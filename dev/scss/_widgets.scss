@@ -1,0 +1,66 @@
+$widgetDistance: 30px;
+.widget {
+	margin: $widgetDistance / 2;
+	min-width: 300px;
+	min-height: 500px;
+	padding: 0;
+}
+
+.col-centered {
+	display:inline-block;
+	float:none;
+}
+
+.discord_connect {
+	$discordColor: #7289DA;
+	text-align: center;
+	background-color: scale_color($discordColor, $lightness: -50%, $alpha: -50%);
+	border: solid 4px $discordColor;
+	@include unselectable;
+
+	.discord_logo {
+		padding: 10px 0;
+		display: inline-block;
+	}
+
+	.connect_link {
+		&, &:hover {
+			text-decoration: none;
+			color: $discordColor;
+		}
+		font-family: 'Russo One', $fonts;
+		font-size: 600%;
+		font-weight: bold;
+	}
+}
+
+.vk_contact {
+	@extend .widget;
+	$vk-border: solid black;
+	$vk-border-size: 4px;
+	border: $vk-border $vk-border-size;
+	vertical-align: top;
+	background: rgba(133,133,133,0.5);
+
+	.vk_link {
+		.vk_logo {
+			margin-top: 20px;
+			width: 177px;
+			height: 177px;
+		}
+
+		.vk_name {
+			font-weight: bold;
+			font-size: 120%;
+		}
+
+		&, &:hover {
+			text-decoration: none;
+			color: #BBBBFF;
+		}
+	}
+	.vk_hr {
+		border: $vk-border $vk-border-size / 2;
+	}
+
+}

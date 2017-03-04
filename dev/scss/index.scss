@@ -1,0 +1,25 @@
+$fonts: Ubuntu, Courier, monospace;
+
+@mixin unselectable() {
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+
+body {
+	font-family: $fonts;
+	//background-color: scale_color(gray, $lightness: 50%);
+	background-image: url("/images/bg.png");
+}
+
+@import "main";
+@import "menu";
+@import "widgets";
+
+
+
+
+
+
+

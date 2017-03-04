@@ -1,0 +1,35 @@
+.site_menu {
+	border-radius: 0;
+}
+
+.logo-text {
+	font-family: Oswald, $fonts;
+	padding: 11px 14px;
+	cursor: default;
+	@include unselectable;
+}
+
+.menu_unit {
+	text-transform: uppercase;
+	font-weight: bold;
+	@include unselectable;
+}
+
+section {
+	animation-name: load;
+	animation-duration: 3s;
+	animation-iteration-count: 1;
+}
+
+.glyphicon {
+	margin-right: 7px;
+}
+
+@keyframes load {
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}

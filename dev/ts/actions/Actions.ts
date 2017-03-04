@@ -1,0 +1,1 @@
+export const PageChanged: string = "PageChanged";
