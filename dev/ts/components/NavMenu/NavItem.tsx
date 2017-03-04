@@ -1,25 +1,22 @@
 import * as React from "react";
 import PageChanged from "../../actions/PageChanged";
 import {connect} from "react-redux";
-export interface NavItemCreateProps
-{
+export interface NavItemCreateProps {
 	href: string;
 	glyph: string;
 	windowName: string;
 }
 
-interface NavItemProps extends NavItemCreateProps
-{
+interface NavItemProps {
 	active: boolean;
 
 }
 
-interface NavItemActions
-{
+interface NavItemActions {
 	changePage: Function;
 }
 
-class NavItem extends React.Component<NavItemProps & NavItemActions, {}> {
+class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavItemActions, {}> {
 	render() {
 		let listClass = this.props.active ? "active" : "";
 		return (
@@ -32,13 +29,9 @@ class NavItem extends React.Component<NavItemProps & NavItemActions, {}> {
 		);
 	}
 }
-function stateToProps(state, props: NavItemCreateProps): NavItemProps
-{
+function stateToProps(state, props: NavItemCreateProps): NavItemProps {
 	return {
 		active: props.href === state.curPage,
-		href: props.href,
-		glyph: props.glyph,
-		windowName: props.windowName
 	};
 }
 
