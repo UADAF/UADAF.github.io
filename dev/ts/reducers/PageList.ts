@@ -12,7 +12,7 @@ export interface Pages {
 	left: PageProps[];
 	right: PageProps[];
 }
-export  default function reduce(state, action: Action): Pages {
+export default function reduce(state, action: Action): Pages {
 	return {
 		left: [
 			{
