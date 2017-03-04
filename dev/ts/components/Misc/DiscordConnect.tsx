@@ -6,7 +6,7 @@ export default class DiscordConnect extends React.Component<{}, {}> {
 		return (
 			<div className="discord_connect">
 				<a className="connect_link"
-				   href="https://discordapp.com/invite/EA445?utm_source=Discord%20Widget&utm_medium=Connect"
+				   href="https://discord.gg/Mmzakpx"
 				   target="_blank">
 					<div>
 						<img className="discord_logo img-responsive" src="images/discord/discordface.png"
