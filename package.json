@@ -39,6 +39,12 @@
     "webpack-hot-middleware": "^2.11.0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^3.3.32",
+    "@types/jquery": "^2.0.40",
+    "@types/react": "^15.0.14",
+    "@types/react-dom": "^0.14.23",
+    "@types/react-redux": "^4.4.36",
+    "@types/redux": "^3.6.0",
     "awesome-typescript-loader": "^3.0.8",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-preset-stage-0": "^6.5.0",
