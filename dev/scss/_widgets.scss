@@ -40,7 +40,7 @@ $widgetDistance: 30px;
 	$vk-border-size: 4px;
 	border: $vk-border $vk-border-size;
 	vertical-align: top;
-	background: rgba(133,133,133,0.5);
+	background: rgba(#858585, 0.5);
 
 	.vk_link {
 		.vk_logo {
@@ -59,8 +59,17 @@ $widgetDistance: 30px;
 			color: #BBBBFF;
 		}
 	}
+
 	.vk_hr {
 		border: $vk-border $vk-border-size / 2;
+	}
+
+	.vk_desc {
+
+		&:hover {
+			color: black;
+		}
+
 	}
 
 }
