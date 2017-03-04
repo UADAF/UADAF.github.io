@@ -18,7 +18,7 @@ class Page extends React.Component<PageProps, {}> {
 }
 
 function stateToProps(state): PageProps {
-	let page = state.namedPages[state.currentPage];
+	let page = state.namedPages[state.curPage];
 	if(!page) {
 		page = state.namedPages["main"];
 	}
