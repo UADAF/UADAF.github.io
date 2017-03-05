@@ -1,1 +1,9 @@
 # UADAF.github.io
+To run own copy:
+* Clone the repository
+* Run following commands: <br>
+	`npm i -g typescript webpack`<br>
+ 	`npm i`<br>
+ 	`npm link typescript`
+* For packing run `webpack` or `npm run build` command
+* For starting dev server run `webpack-dev-server` or `npm run start` command
