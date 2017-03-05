@@ -6,4 +6,4 @@ To run own copy:
  	`npm i`<br>
  	`npm link typescript`
 * For packing run `webpack` or `npm run build` command
-* For starting dev server run `webpack-dev-server` or `npm run start` command
+* For starting dev server on `localhost:3000` run `webpack-dev-server` or `npm run start` command
