@@ -7,15 +7,17 @@ $fonts: Ubuntu, Courier, monospace;
 	-webkit-user-select: none;
 }
 
-body {
-	font-family: $fonts;
-	//background-color: scale_color(gray, $lightness: 50%);
-	background-image: url("/images/bg.png");
+.col-centered {
+	display:inline-block;
+	float:none;
 }
 
-@import "main";
-@import "menu";
-@import "widgets";
+body {
+	font-family: $fonts;
+	background: url("/images/bg.png");
+}
+
+@import "main", "menu", "widgets";
 
 
 
