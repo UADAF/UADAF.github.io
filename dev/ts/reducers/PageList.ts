@@ -1,6 +1,7 @@
 import {Component} from "react";
 import MainPage from "../components/Pages/MainPage";
 import {Action} from "../misc/MiscInterfaces";
+import HelpPage from "../components/Pages/HelpPage"
 export interface PageProps {
 	href: string;
 	glyph: string;
@@ -20,6 +21,12 @@ export default function reduce(state, action: Action): Pages {
 				glyph: "home",
 				windowName: "Главная страница",
 				clazz: MainPage
+			},
+			{
+				href: "help",
+				glyph: "info-sign",
+				windowName: "Помощь",
+				clazz: HelpPage
 			}
 		],
 		right: []

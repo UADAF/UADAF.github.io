@@ -1,0 +1,26 @@
+$help-color: white;
+$size: 300px;
+
+.helpQuestion {
+  color: $help-color;
+  border: 2px solid black;
+  padding: 5px;
+  background: rgba(#000, 0.4);
+  margin-bottom: 10px;
+
+  .question{
+    font-size: 130%;
+    font-weight: bold;
+  }
+  img {
+    max-width: $size;
+    max-height: $size;
+    margin: 0 5px 5px;
+  }
+}
+
+.help_title {
+  color: $help-color;
+  font-size:150%;
+  background: rgba(#000, 0.5);
+}

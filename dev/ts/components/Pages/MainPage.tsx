@@ -12,7 +12,10 @@ class MainPage extends React.Component<MainPageProps, {}> {
 		return (
 			<div className="container">
 				<div className="row">
-					<DiscordConnect/>
+					<p className="help_title text-center">Если у вас что-то не получается, сверху есть кнопочка <strong>Помощь</strong>.</p>
+				</div>
+				<div className="row">
+					<DiscordConnect />
 				</div>
 				<div className="row widget text-center">
 					{this.props.vkLinks.map((e, i) => <VkContact key={i} {...e}/>)}
