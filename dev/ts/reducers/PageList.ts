@@ -2,6 +2,7 @@ import {Component} from "react";
 import MainPage from "../components/Pages/MainPage";
 import {Action} from "../misc/MiscInterfaces";
 import HelpPage from "../components/Pages/HelpPage"
+import {ITHPage} from "../components/Pages/ITHPage";
 export interface PageProps {
 	href: string;
 	glyph: string;
@@ -21,6 +22,12 @@ export default function reduce(state, action: Action): Pages {
 				glyph: "home",
 				windowName: "Главная страница",
 				clazz: MainPage
+			},
+			{
+				href: "ith",
+				glyph: "bookmark",
+				windowName: "ITHappens",
+				clazz: ITHPage
 			},
 			{
 				href: "help",
