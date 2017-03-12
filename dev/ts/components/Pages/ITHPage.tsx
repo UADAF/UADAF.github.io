@@ -1,7 +1,5 @@
 import * as React from "react";
-import {Action} from "../../actions/Actions";
-import ITHLogin from "../../actions/ITHLogin";
-import ITHStoryChanged from "../../actions/ITHStoryChanged";
+import {Action, ITHLogin, ITHStoryChanged} from "../../actions/Actions";
 import {connect} from "react-redux";
 import * as $ from "jquery";
 
@@ -57,7 +55,8 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}>
 				<div className="row">
 					<div className="frame">
 						<p className="user_data"> User: {this.props.user}</p>
-						<a className="ith_title" href={`http://ithappens.me/story/${this.props.story}`} dangerouslySetInnerHTML={{__html: `${this.props.story}:${story.name}`}}/>
+						<a className="ith_title" href={`http://ithappens.me/story/${this.props.story}`}
+						   dangerouslySetInnerHTML={{__html: `${this.props.story}:${story.name}`}}/>
 						<div className="ith_quote" dangerouslySetInnerHTML={{__html: story.content}}/>
 						<button className="control-btn control-btn-left" onClick={() => this.props.changeStory(-1)}>
 							<span>{"<<- Туда"}</span></button>
@@ -105,6 +104,10 @@ function getStory(id: number): Story {
 }
 
 export default connect<ITHCombinedProps, ITHCombinedActions, {}>(state => state.ithState, {
-	login: ITHLogin,
-	changeStory: ITHStoryChanged
+	login: name => {
+		return {type: ITHLogin, data: name}
+	},
+	changeStory: changeBy => {
+		return {type: ITHStoryChanged, data: changeBy}
+	}
 })(ITHPage);

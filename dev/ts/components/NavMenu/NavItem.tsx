@@ -1,7 +1,6 @@
 import * as React from "react";
-import PageChanged from "../../actions/PageChanged";
 import {connect} from "react-redux";
-import {Action} from "../../actions/Actions";
+import {Action, PageChanged} from "../../actions/Actions";
 export interface NavItemCreateProps {
 	href: string;
 	glyph: string;
@@ -36,4 +35,4 @@ function stateToProps(state, props: NavItemCreateProps): NavItemProps {
 	};
 }
 
-export default connect<NavItemProps, NavItemActions, NavItemCreateProps>(stateToProps, {changePage: PageChanged})(NavItem);
+export default connect<NavItemProps, NavItemActions, NavItemCreateProps>(stateToProps, {changePage: page => {return {type: PageChanged, data: page}}})(NavItem);
