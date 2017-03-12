@@ -1,4 +1,4 @@
-import {Action} from "../misc/MiscInterfaces";
+import {Action} from "../actions/Actions";
 import {PageChanged} from "../actions/Actions";
 export default function (state: string = localStorage.getItem("lastPage"), action: Action): string {
 	if (state === null || parseInt(localStorage.getItem("lastPageTimestamp")) < new Date().getTime()) {

@@ -1,6 +1,6 @@
 import {Component} from "react";
 import MainPage from "../components/Pages/MainPage";
-import {Action} from "../misc/MiscInterfaces";
+import {Action} from "../actions/Actions";
 import HelpPage from "../components/Pages/HelpPage"
 import {ITHPage} from "../components/Pages/ITHPage";
 export interface PageProps {

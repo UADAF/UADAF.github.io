@@ -1,5 +1,4 @@
-export function localStorageContains(key: string): boolean
-{
+export function localStorageContains(key: string): boolean {
 	let item = localStorage.getItem(key);
 	return item !== null && item !== "NONE";
 }
