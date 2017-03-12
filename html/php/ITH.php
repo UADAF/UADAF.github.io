@@ -11,14 +11,14 @@ $name = $_POST['name'];
 $base = connect();
 switch ($task) {
 	case "login": {
-		$story = $base->query("SELECT `story` FROM `ithappends` WHERE `user` = '$name'") or die($base->error);
+		$story = $base->query("SELECT `story` FROM `ithappends` WHERE `user` = '$name'") or die("{error: $base->error}");
 		if($story->num_rows === 0) {
 			$story = 1;
 			$base->query("INSERT INTO `ithappends` (`user`, `story`) VALUES ('$name', 1)", MYSQLI_ASYNC);
 		} else {
 			$story = $story->fetch_array()[0];
 		}
-		$base->close();
+
 		$json = new stdClass();
 		$json->isLogged = true;
 		$json->user = $name;
@@ -26,6 +26,7 @@ switch ($task) {
 		$json->color = "green";
 		$json->story = $story;
 		echo json_encode($json);
+		$base->close();
 		break;
 	}
 	case "setStory": {

@@ -62,6 +62,15 @@ function verifyName(name: string): ITHState {
 	}
 	localStorage.setItem("ITH_last_login", name);
 	let state = JSON.parse(connectToDB({task: "login", name: name}));
+	if(state.error) {
+		return {
+			isLogged: false,
+			msg: state.erorr,
+			color: "red",
+			user: "NONE",
+			story: 1
+		}
+	}
 	state.story = parseInt(state.story);
 	return state;
 }
