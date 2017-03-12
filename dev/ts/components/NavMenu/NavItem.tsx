@@ -1,6 +1,7 @@
 import * as React from "react";
 import PageChanged from "../../actions/PageChanged";
 import {connect} from "react-redux";
+import {Action} from "../../actions/Actions";
 export interface NavItemCreateProps {
 	href: string;
 	glyph: string;
@@ -13,7 +14,7 @@ interface NavItemProps {
 }
 
 interface NavItemActions {
-	changePage: Function;
+	changePage: (string) => Action;
 }
 
 class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavItemActions, {}> {

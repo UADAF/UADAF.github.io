@@ -1,20 +1,110 @@
 import * as React from "react";
-export interface ITHProps {
+import {Action} from "../../actions/Actions";
+import ITHLogin from "../../actions/ITHLogin";
+import ITHStoryChanged from "../../actions/ITHStoryChanged";
+import {connect} from "react-redux";
+import * as $ from "jquery";
+
+
+interface ITHLoginProps {
+	msg: string;
+	color: string;
 }
-export class ITHPage extends React.Component<ITHProps, {}> {
-    render() {
-        return (
-            <div className="container" id="ith_quotes">
-                <div className="row">
-                    <div className="frame">
-                        <p className="user_data"> User: {"Root"}</p>
-                        <p className="ith_title">2... цоуйрулйрулорйлуорцйлорулойрцлоурйл</p>
-                        <textarea disabled className="ith_quote" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque doloribus ea eligendi est facilis laudantium magni nam non officiis vel? Ab, ea, iusto. Ab culpa expedita hic nisi optio quibusdam repudiandae ut? Ab accusantium animi architecto beatae commodi consectetur culpa delectus ea earum eligendi eveniet ex facere, fugit illo illum ipsa, magnam maxime molestiae necessitatibus nesciunt nobis, non odio quae quaerat quas quo quos voluptatibus. Animi corporis maiores maxime odio placeat praesentium sed ullam voluptatem? Aliquam amet dignissimos eum facere, in inventore laudantium magni, necessitatibus neque nihil officia quam quis ratione reiciendis saepe similique sit suscipit tempora ullam vel? Animi architecto at consequuntur cum expedita incidunt ipsum iste molestiae, necessitatibus nihil odit omnis quod ratione repellendus sapiente temporibus velit! Omnis, porro tempora. Corporis debitis dignissimos dolores facere minima mollitia quod rerum sequi vero. Accusamus adipisci, aliquam amet aspernatur at cum dignissimos dolore dolorum eaque enim eos, fuga illum ipsa ipsam iure magnam nam nemo nisi nobis odit perferendis praesentium quaerat quas ratione reiciendis repellendus sed similique tenetur totam ullam ut vel veniam veritatis. Aliquid aperiam, aut eos exercitationem illo natus neque porro repellat. Ipsum perferendis, ullam. Amet asperiores corporis enim fugiat, praesentium quae repellendus rerum veritatis voluptatem! Amet dolor exercitationem expedita iste laborum laudantium minima veritatis. Adipisci alias aliquid autem commodi corporis delectus distinctio dolor dolorem ea eos esse et, ex expedita in incidunt inventore iusto minima natus nisi pariatur provident reprehenderit saepe sapiente similique sint, suscipit totam ullam. Ab aperiam, atque dicta distinctio doloremque ducimus earum eius enim esse et ex excepturi hic impedit incidunt inventore ipsa iure laboriosam, modi neque nihil numquam odio placeat porro quis repudiandae saepe similique vitae. Accusamus aliquid commodi, debitis dolor doloribus ea eius enim error esse excepturi id maiores minima modi nemo neque officia officiis, quaerat quas quia quisquam ratione rerum sapiente sequi veniam veritatis, vero voluptatibus voluptatum. Ad aliquam assumenda commodi consequatur consequuntur cumque deserunt ducimus earum eos ex excepturi, in inventore ipsum iste maiores maxime minima molestias, nihil pariatur qui quia quisquam quo, recusandae saepe similique tenetur veniam voluptas. Aliquam ea et illum molestias nemo nesciunt nisi obcaecati reprehenderit totam voluptates. Amet consectetur corporis ea enim inventore repellat repellendus sunt? A facilis iste repellendus sed sint. A accusantium aliquid aperiam beatae consequuntur dicta doloremque dolorum, est harum id inventore, ipsum magni, maxime molestiae neque nihil nisi numquam officia perferendis porro quod vel vitae? Amet atque consequatur corporis dolore eligendi error est eum ex id in mollitia natus necessitatibus, non, omnis quia quod rem repellat reprehenderit rerum sint ullam unde vel voluptas? Aperiam asperiores aspernatur beatae, blanditiis cum debitis deleniti dicta dolorem dolorum earum expedita facilis fugiat incidunt iure maxime minus mollitia nihil numquam pariatur qui quis quod recusandae rem rerum sed sequi vero, voluptate? Accusamus culpa doloribus ea eligendi esse ex maiores, nihil obcaecati, odit officia porro reprehenderit repudiandae similique tempore veniam. Accusamus atque consectetur et fugit, molestiae nam non officiis possimus provident ratione suscipit totam voluptatibus voluptatum. Ab illo iste maxime omnis quo sint tempora voluptates. Eligendi, placeat, tenetur? Soluta.</textarea>
-                        <button className="control-btn control-btn-left"><span>{"<<- Туда "}</span></button><button className="control-btn control-btn-right"><span>{"Сюда ->>"}</span></button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+
+interface ITHLoginActions {
+	login: (string) => Action;
 }
-//export default connect<ITHProps, {}, {}>(state => {return {question: state.question}})(HelpPage);
+
+interface ITHStoryProps {
+	user: string;
+	story: number;
+}
+
+interface ITHStoryActions {
+	changeStory: (number) => Action;
+}
+
+type ITHCombinedProps = ITHLoginProps & ITHStoryProps & {isLogged: boolean};
+type ITHCombinedActions = ITHLoginActions & ITHStoryActions;
+
+class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}> {
+
+	render() {
+		console.log(this.props.isLogged);
+		return this.props.isLogged ? this.createStory() : this.createLogin();
+	}
+
+	createLogin() {
+		return (
+			<div className="container login" id="ith_login">
+				<div className="row text-center">
+					<div className="frame">
+						<input type="login" id="login" placeholder="Login..."/>
+						<input type="submit" onClick={() => this.props.login($("#login").val())} value="Войти"/>
+						<div className="login_msg" style={{color: this.props.color}}>
+							{this.props.msg}
+						</div>
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	createStory() {
+		let story: Story = getStory(this.props.story);
+		return (
+			<div className="container" id="ith_quotes">
+				<div className="row">
+					<div className="frame">
+						<p className="user_data"> User: {this.props.user}</p>
+						<a className="ith_title" href={`http://ithappens.me/story/${this.props.story}`} dangerouslySetInnerHTML={{__html: `${this.props.story}:${story.name}`}}/>
+						<div className="ith_quote" dangerouslySetInnerHTML={{__html: story.content}}/>
+						<button className="control-btn control-btn-left" onClick={() => this.props.changeStory(-1)}>
+							<span>{"<<- Туда"}</span></button>
+						<button className="control-btn control-btn-right" onClick={() => this.props.changeStory(1)}>
+							<span>{"Сюда ->>"}</span></button>
+					</div>
+				</div>
+			</div>
+		)
+	}
+}
+
+interface Story {
+	name: string;
+	content: string;
+}
+
+function getStory(id: number): Story {
+	let html: string = $.ajax({
+		url: `http://ithappens.me/story/${id}`,
+		method: "GET",
+		crossDomain: true,
+		async: false
+	}).responseText;
+	let story = $(".story", $(html));
+	let text = story.find(".text");
+	let name = $("h1", story);
+	text.find("a").each((i, e) => {
+		let jqe = $(e);
+		jqe.attr("href", `http://ithappens.me${jqe.attr("href")}`);
+		jqe.attr("target", "_blank")
+	});
+	//Just for safety
+	text.find("script").each((i, e) => {
+		e.innerHTML = "";
+	});
+	name.find("script").each((i, e) => {
+		e.innerHTML = "";
+	});
+
+	return {
+		name: name.html(),
+		content: text.html()
+	};
+}
+
+export default connect<ITHCombinedProps, ITHCombinedActions, {}>(state => state.ithState, {
+	login: ITHLogin,
+	changeStory: ITHStoryChanged
+})(ITHPage);

@@ -7,9 +7,20 @@ import {Reducers, default as reduces} from "./reducers/reducers";
 import * as $ from "jquery";
 import * as bs from "bootstrap";
 export const store: Store<Reducers> = createStore<Reducers>(reduces);
-$(() => render(
-	<Provider store={store}>
-		<Page />
-	</Provider>,
-	$("#root").get(0))
-);
+$(() => {
+	enableCORSAjax();
+	render(
+		<Provider store={store}>
+			<Page />
+		</Provider>,
+		$("#root").get(0))
+});
+
+
+function enableCORSAjax() {
+	$.ajaxPrefilter(options => {
+		if (options.crossDomain && $.support.cors) {
+			options.url = (window.location.protocol === 'http:' ? 'http:' : 'https:') + '//cors-anywhere.herokuapp.com/' + options.url;
+		}
+	});
+}
