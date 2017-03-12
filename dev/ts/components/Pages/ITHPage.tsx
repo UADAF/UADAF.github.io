@@ -28,7 +28,6 @@ type ITHCombinedActions = ITHLoginActions & ITHStoryActions;
 class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}> {
 
 	render() {
-		console.log(this.props.isLogged);
 		return this.props.isLogged ? this.createStory() : this.createLogin();
 	}
 
