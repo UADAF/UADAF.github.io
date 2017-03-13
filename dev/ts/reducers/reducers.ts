@@ -1,17 +1,19 @@
 import {Reducer, combineReducers} from "redux";
-import PageList from "./PageList";
+import {default as PageList, Pages} from "./PageList";
 import NamedPageList from "./NamedPageList";
 import CurrentPage from "./CurrentPage";
 import VkLinks from "./VkLinks";
 import FAQuestions from "./FAQuestions"
-import ITHState from "./ITHState";
+import {default as ITH, ITHState} from "./ITHState";
+import {VkContactProps} from "../components/Vk/VkContact";
+import {HelpQuestionProps} from "../components/Misc/HelpQuestion";
 export interface Reducers {
-	pages: typeof PageList;
-	namedPages: typeof NamedPageList;
-	curPage: typeof CurrentPage;
-	vkLinks: typeof VkLinks;
-	question: typeof FAQuestions;
-	ithState: typeof ITHState;
+	pages: Reducer<Pages>;
+	namedPages: Reducer<string>;
+	curPage: Reducer<string>;
+	vkLinks: Reducer<VkContactProps[]>;
+	question: Reducer<HelpQuestionProps[]>;
+	ithState: Reducer<ITHState>;
 }
 const reduces: Reducer<Reducers> = combineReducers<Reducers>({
 	pages: PageList,
@@ -19,7 +21,7 @@ const reduces: Reducer<Reducers> = combineReducers<Reducers>({
 	curPage: CurrentPage,
 	vkLinks: VkLinks,
 	question: FAQuestions,
-	ithState: ITHState
+	ithState: ITH
 });
 
 export default reduces;

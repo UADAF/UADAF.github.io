@@ -3,10 +3,10 @@ import {render} from "react-dom";
 import {createStore, Store} from "redux";
 import Page from "./components/Pages/Page";
 import {Provider} from "react-redux";
-import {Reducers, default as reduces} from "./reducers/reducers";
+import {Reducers, default as reducers} from "./reducers/reducers";
 import * as $ from "jquery";
 import * as bs from "bootstrap";
-export const store: Store<Reducers> = createStore<Reducers>(reduces);
+export const store: Store<Reducers> = createStore<Reducers>(reducers);
 $(() => {
 	enableCORSAjax();
 	render(
