@@ -3,6 +3,7 @@ import {ajax} from "jquery";
 const invite = ajax({
 	url: 'https://discordapp.com/api/guilds/197699632841752576/widget.json',
 	async: false,
+	crossDomain: true
 }).responseJSON['instant_invite'];
 export default class DiscordConnect extends React.Component<{}, {}> {
 
