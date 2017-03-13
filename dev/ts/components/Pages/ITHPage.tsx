@@ -37,7 +37,7 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}>
 				<div className="row text-center">
 					<div className="frame">
 						<input type="login" id="login" placeholder="Login..."/>
-						<input type="submit" onClick={() => this.props.login($("#login").val())} value="Войти"/>
+						<input type="submit" id="submit" onClick={() => this.props.login($("#login").val())} value="Войти"/>
 						<div className="login_msg" style={{color: this.props.color}}>
 							{this.props.msg}
 						</div>
@@ -57,9 +57,9 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}>
 						<a className="ith_title" href={`http://ithappens.me/story/${this.props.story}`}
 						   dangerouslySetInnerHTML={{__html: `${this.props.story}:${story.name}`}}/>
 						<div className="ith_quote" dangerouslySetInnerHTML={{__html: story.content}}/>
-						<button className="control-btn control-btn-left" onClick={() => this.props.changeStory(-1)}>
+						<button className="control-btn-left" onClick={() => this.props.changeStory(-1)}>
 							<span>{"<<- Туда"}</span></button>
-						<button className="control-btn control-btn-right" onClick={() => this.props.changeStory(1)}>
+						<button className="control-btn-right" onClick={() => this.props.changeStory(1)}>
 							<span>{"Сюда ->>"}</span></button>
 					</div>
 				</div>

@@ -1,32 +1,39 @@
+@mixin ith_misc($padding, $bgcolor:black, $alpha:0.3, $textcolor: white, $borderSize: 1px, $borderType: solid, $borderColor: black) {
+	color: $textcolor;
+	background: rgba($bgcolor, $alpha);
+	border: $borderSize $borderType $borderColor;
+	padding: $padding;
+}
+
+@mixin br_left {
+	border-radius: 5px 0 0 5px;
+}
+
+@mixin br_right {
+	border-radius: 0 5px 5px 0;
+}
+
 #ith_login {
 	.frame {
-		background: rgba(#000, 0.5);
-		border: 1px solid black;
-		padding: 20px;
+		@include ith_misc(20px, $alpha:0.5);
 
-		input[type=login] {
-			padding: 10px;
-			border-radius: 5px 0 0 5px;
-			background: rgba(#000, 0.3);
-			border: 1px solid white;
-			color: white;
+		#login {
+			@include ith_misc(10px, $borderColor: white);
+			@include br_left;
 			width: 80%;
 			&:hover {
 				background: rgba(#000, 0.4);
 			}
 		}
 
-		input[type=submit] {
-			padding: 10px;
-			border: 1px solid white;
-			border-radius: 0 5px 5px 0;
-			background: rgba(#000, 0.3);
-			color: white;
+		#submit {
+			@include ith_misc(10px, $borderColor: white);
+			@include br_right;
 			&:hover {
-				background: rgba(#000, 0.8);
+				background: rgba(black, 0.8);
 			}
 			&:active {
-				background: rgba(#000, 1);
+				background: black;
 			}
 		}
 
@@ -38,42 +45,35 @@
 }
 
 #ith_quotes {
+
 	.frame {
-		background: rgba(#000, 0.3);
-		border: 1px solid black;
-		padding: 20px;
+		@include ith_misc(20px);
 		.ith_title {
+			@include ith_misc(5px);
 			width: 100%;
-			padding: 5px;
-			color: white;
-			background: rgba(#000, 0.3);
-			border: 1px solid #000;
 			margin-bottom: 0;
 			font-size: 140%;
 			border-radius: 5px 5px 0 0;
 		}
 		.ith_quote {
+			@include ith_misc(5px);
 			width: 100%;
 			min-height: 300px;
-			background: rgba(#000, 0.3);
 			resize: vertical;
-			color: white;
-			border: 1px solid #000;
 			border-radius: 0 0 5px 5px;
-			padding: 5px;
 		}
 		.control-btn {
+			@include ith_misc(5px);
+			@include unselectable;
 			width: 50%;
-			padding: 5px;
-			background: rgba(#000, 0.3);
-			border: 1px solid #000;
-			color: white;
 		}
 		.control-btn-left {
-			border-radius: 5px 0 0 5px;
+			@extend .control-btn;
+			@include br_left;
 		}
 		.control-btn-right {
-			border-radius: 0 5px 5px 0;
+			@extend .control-btn;
+			@include br_right;
 		}
 		.user_data {
 			color: #858585;
