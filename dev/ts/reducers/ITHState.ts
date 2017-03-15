@@ -15,7 +15,7 @@ const defaultState: ITHState = {
 	story: 1
 };
 
-export default function (state: ITHState = null, action: Action): ITHState {
+export default function (state: ITHState = null, action: Action<any>): ITHState {
 	if(action) {
 		switch(action.type) {
 			case ITHLogin: {

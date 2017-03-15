@@ -1,6 +1,6 @@
 import {Action} from "../actions/Actions";
 import {PageChanged} from "../actions/Actions";
-export default function (state: string = localStorage.getItem("lastPage"), action: Action): string {
+export default function (state: string = localStorage.getItem("lastPage"), action: Action<any>): string {
 	if (state === null || parseInt(localStorage.getItem("lastPageTimestamp")) < new Date().getTime()) {
 		state = "main";
 	}

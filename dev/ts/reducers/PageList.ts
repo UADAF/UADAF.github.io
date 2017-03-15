@@ -16,7 +16,7 @@ export interface Pages {
 	left: PageProps[];
 	right: PageProps[];
 }
-export default function reduce(state: Pages, action: Action): Pages {
+export default function reduce(state: Pages, action: Action<any>): Pages {
 	let pages: Pages = {
 		left: [
 			{
