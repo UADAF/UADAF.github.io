@@ -1,6 +1,6 @@
 import * as React from "react";
-import {Action, ITHLogin, ITHStoryChanged} from "../../actions/Actions";
-import {connect} from "react-redux";
+import {Action, createActionCreator, ITHLogin, ITHStoryChanged} from "../../actions/Actions";
+import {connect, ActionCreator} from "react-redux";
 import * as $ from "jquery";
 
 
@@ -10,7 +10,7 @@ interface ITHLoginProps {
 }
 
 interface ITHLoginActions {
-	login: (string) => Action;
+	login: ActionCreator<string>;
 }
 
 interface ITHStoryProps {
@@ -19,7 +19,7 @@ interface ITHStoryProps {
 }
 
 interface ITHStoryActions {
-	changeStory: (number) => Action;
+	changeStory: ActionCreator<number>;
 }
 
 type ITHCombinedProps = ITHLoginProps & ITHStoryProps & {isLogged: boolean};
@@ -102,10 +102,6 @@ function getStory(id: number): Story {
 }
 
 export default connect<ITHCombinedProps, ITHCombinedActions, {}>(state => state.ithState, {
-	login: name => {
-		return {type: ITHLogin, data: name}
-	},
-	changeStory: changeBy => {
-		return {type: ITHStoryChanged, data: changeBy}
-	}
+	login: createActionCreator<string>(ITHLogin),
+	changeStory: createActionCreator<number>(ITHStoryChanged)
 })(ITHPage);

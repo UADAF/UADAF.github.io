@@ -1,6 +1,6 @@
 import * as React from "react";
-import {connect} from "react-redux";
-import {Action, PageChanged} from "../../actions/Actions";
+import {connect, ActionCreator} from "react-redux";
+import {Action, PageChanged, createActionCreator} from "../../actions/Actions";
 export interface NavItemCreateProps {
 	href: string;
 	glyph: string;
@@ -13,7 +13,7 @@ interface NavItemProps {
 }
 
 interface NavItemActions {
-	changePage: (string) => Action;
+	changePage: ActionCreator<string>;
 }
 
 class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavItemActions, {}> {
@@ -35,4 +35,4 @@ function stateToProps(state, props: NavItemCreateProps): NavItemProps {
 	};
 }
 
-export default connect<NavItemProps, NavItemActions, NavItemCreateProps>(stateToProps, {changePage: page => {return {type: PageChanged, data: page}}})(NavItem);
+export default connect<NavItemProps, NavItemActions, NavItemCreateProps>(stateToProps, {changePage: createActionCreator<string>(PageChanged)})(NavItem);
