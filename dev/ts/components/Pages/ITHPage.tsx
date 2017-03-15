@@ -37,7 +37,8 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}>
 				<div className="row text-center">
 					<div className="frame">
 						<input type="login" id="login" placeholder="Login..."/>
-						<input type="submit" id="submit" onClick={() => this.props.login($("#login").val())} value="Войти"/>
+						<input type="submit" id="submit" onClick={() => this.props.login($("#login").val())}
+							   value="Войти"/>
 						<div className="login_msg" style={{color: this.props.color}}>
 							{this.props.msg}
 						</div>
@@ -85,17 +86,15 @@ function getStory(id: number): Story {
 	let name = $("h1", story);
 	text.find("a").each((i, e) => {
 		let jqe = $(e);
-		jqe.attr("href", `http://ithappens.me${jqe.attr("href")}`);
+		let href: string = jqe.attr("href");
+		if (href.indexOf("/") == 0) {//Slash as first symbol
+			jqe.attr("href", `http://ithappens.me${href}`);
+		}
 		jqe.attr("target", "_blank")
 	});
 	//Just for safety
-	text.find("script").each((i, e) => {
-		e.innerHTML = "";
-	});
-	name.find("script").each((i, e) => {
-		e.innerHTML = "";
-	});
-
+	text.find("script").html("");
+	name.find("script").html("");
 	return {
 		name: name.html(),
 		content: text.html()
