@@ -8,7 +8,7 @@ export interface ITHState {
 	story: number;
 }
 const defaultState: ITHState = {
-	isLogged: true,
+	isLogged: false,
 	user: "NONE",
 	msg: "",
 	color: "#000",
@@ -16,18 +16,21 @@ const defaultState: ITHState = {
 };
 
 export default function (state: ITHState = defaultState, action: Action<any>): ITHState {
-	if(action) {
-		switch(action.type) {
+	if (action) {
+		switch (action.type) {
 			case ITHLogin: {
 				return verifyName(action.data);
 			}
 			case ITHStoryChanged: {
-				if(!state.isLogged) {
+				if (!state.isLogged) {
 					return defaultState;
 				}
 				let story: number = state.story + action.data;
-				connectToDB({task: "setStory", name: state.user, story: story});//Otherwise redux thinks it is the same state
-
+				if (story <= 0) {
+					return state;
+				}
+				connectToDB({task: "setStory", name: state.user, story: story});
+				//Otherwise redux thinks it is the same state
 				return {
 					isLogged: state.isLogged,
 					user: state.user,
@@ -39,9 +42,9 @@ export default function (state: ITHState = defaultState, action: Action<any>): I
 		}
 
 	}
-	if(!state) {
+	if (!state) {
 		let lastLogin: string = localStorage.getItem("ITH_last_login");
-		if(lastLogin) {
+		if (lastLogin) {
 			return verifyName(lastLogin);
 		} else {
 			return defaultState;
@@ -57,12 +60,12 @@ const emptyNameState: ITHState = {
 	story: 1
 };
 function verifyName(name: string): ITHState {
-	if(name === "") {
+	if (name === "") {
 		return emptyNameState;
 	}
 	localStorage.setItem("ITH_last_login", name);
 	let state = JSON.parse(connectToDB({task: "login", name: name}));
-	if(state.error) {
+	if (state.error) {
 		return {
 			isLogged: false,
 			msg: state.erorr,
