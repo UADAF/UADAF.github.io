@@ -37,8 +37,11 @@ module.exports = {
 		new webpack.optimize.OccurrenceOrderPlugin()
 	],
 	externals: {
-		//"react": "React",
-		//"react-dom": "ReactDOM",
-		//"jquery": "jQuery"
+		"react": "React",
+		"react-dom": "ReactDOM",
+		"jquery": "jQuery",
+		"redux": "Redux",
+		"react-redux": "ReactRedux",
+		"bootstrap": "Bootstrap"
 	}
 };
