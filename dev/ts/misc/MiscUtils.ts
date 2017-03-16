@@ -12,6 +12,7 @@ export function isJWT(jwt: string) {
 export interface CustomContent {
 	name: string;
 	content: string;
+	created_by: string;
 }
 
 let customContent: CustomContent;

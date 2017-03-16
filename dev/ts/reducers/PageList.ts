@@ -26,24 +26,25 @@ export default function reduce(state: Pages, action: Action<any>): Pages {
 				clazz: MainPage
 			},
 			{
-				href: "help",
-				glyph: "info-sign",
-				windowName: "Помощь",
-				clazz: HelpPage
-			},
-			{
 				href: "ith",
 				glyph: "bookmark",
 				windowName: "ITHappens",
 				clazz: ITHPage
+			},
+			{
+				href: "help",
+				glyph: "info-sign",
+				windowName: "Помощь",
+				clazz: HelpPage
 			}
+
 		],
 			right: []
 	};
 	if(hasCustomContent()) {
-		pages.left.push({
+		pages.right.push({
 			href: "custom",
-			glyph: "info-sign",
+			glyph: "pushpin",
 			windowName: getCustomContent().name,
 			clazz: CustomContentPage
 		});

@@ -8,14 +8,14 @@ export interface ITHState {
 	story: number;
 }
 const defaultState: ITHState = {
-	isLogged: false,
+	isLogged: true,
 	user: "NONE",
 	msg: "",
 	color: "#000",
 	story: 1
 };
 
-export default function (state: ITHState = null, action: Action<any>): ITHState {
+export default function (state: ITHState = defaultState, action: Action<any>): ITHState {
 	if(action) {
 		switch(action.type) {
 			case ITHLogin: {
@@ -26,8 +26,8 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 					return defaultState;
 				}
 				let story: number = state.story + action.data;
-				connectToDB({task: "setStory", name: state.user, story: story});
-				//Otherwise redux thinks it is the same state
+				connectToDB({task: "setStory", name: state.user, story: story});//Otherwise redux thinks it is the same state
+
 				return {
 					isLogged: state.isLogged,
 					user: state.user,
