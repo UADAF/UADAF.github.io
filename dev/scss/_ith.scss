@@ -15,7 +15,7 @@
 
 #ith_login {
 	.frame {
-		@include ith_misc(20px, $alpha:0.5);
+		@include ith_misc(20px, $alpha: 0.5);
 
 		#login {
 			@include ith_misc(10px, $borderColor: white);
@@ -54,10 +54,10 @@
 			margin-bottom: 0;
 			font-size: 140%;
 			border-radius: 5px 5px 0 0;
-          border-bottom: none;
-            a {
-              color: white;
-            }
+			border-bottom: none;
+			a {
+				color: white;
+			}
 		}
 		.ith_quote {
 			@include ith_misc(5px);
@@ -65,17 +65,17 @@
 			min-height: 300px;
 			resize: vertical;
 			border-radius: 0;
-            border-bottom: none;
+			border-bottom: none;
 		}
 		.control-btn {
 			@include ith_misc(5px);
 			@include unselectable;
-            &:hover {
-              background: rgba(#000, 0.6);
-            }
-            &:focus {
-              outline: 0;
-            }
+			&:hover {
+				background: rgba(#000, 0.6);
+			}
+			&:focus {
+				outline: 0;
+			}
 			width: 50%;
 		}
 		.control-btn-left {
@@ -88,7 +88,7 @@
 		}
 		.user_data {
 			color: #858585;
-            margin: 0 0 5px;
-        }
+			margin: 0 0 5px;
+		}
 	}
 }

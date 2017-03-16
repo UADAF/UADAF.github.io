@@ -8,10 +8,6 @@ export default class CustomContentPage extends React.Component<{}, {}> {
 			return React.createElement("div", null, "Custom content can't contain <script> tag");
 		}
 		return (
-			/**<div className="container" id="custom_content">
-				<h1 className="name">{name}</h1>
-				<div className="content" dangerouslySetInnerHTML={{__html: content.content}}/>
-			</div> **/
 			<div className="container">
 				<div className="frame">
 					<div className="cc_name text-center">
