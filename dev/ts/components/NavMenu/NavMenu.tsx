@@ -33,7 +33,7 @@ class NavMenu extends React.Component<NavMenuProps, {}> {
 	}
 
 	static mapNaveBar(pages: PageProps[]) {
-		return pages.map((e: PageProps, i: number) => <NavItem key={i} {...e} glyph={"glyphicon glyphicon-" + e.glyph}/>);
+		return pages.map((e: PageProps, i: number) => <NavItem key={i} href={e.href} glyph={e.glyph} windowName={e.windowName}/>);
 	}
 }
 
