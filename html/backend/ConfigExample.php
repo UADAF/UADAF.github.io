@@ -2,4 +2,4 @@
 $baseHost = "localhost";
 $baseLogin = "root";
 $basePass = "root";
-$baseName = "UADAF_DB";
+$baseName = "SOME_DB";

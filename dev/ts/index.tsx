@@ -1,3 +1,7 @@
+export const backendExt: string = ".php"; //Apache
+//export const backendExt: string = ".js"; //Some node server (Like Express)
+
+
 import * as React from "react";
 import {render} from "react-dom";
 import {createStore, Store} from "redux";
@@ -5,7 +9,10 @@ import Page from "./components/Pages/Page";
 import {Provider} from "react-redux";
 import {Reducers, default as reducers} from "./reducers/reducers";
 import * as $ from "jquery";
+
 export const store: Store<Reducers> = createStore<Reducers>(reducers);
+
+
 $(() => {
 	enableCORSAjax();
 	render(

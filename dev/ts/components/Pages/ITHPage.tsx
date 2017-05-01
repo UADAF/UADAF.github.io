@@ -37,7 +37,7 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}>
 				<div className="row text-center">
 					<div className="frame">
 						<input type="login" id="login" placeholder="Login..."/>
-						<input type="submit" id="submit" onClick={() => this.props.login($("#login").val())}
+						<input type="submit" id="submit" onClick={() => this.props.login({status: "send", name: $("#login").val()})}
 							   value="Войти"/>
 						<div className="login_msg" style={{color: this.props.color}}>
 							{this.props.msg}
@@ -102,6 +102,6 @@ function getStory(id: number): Story {
 }
 
 export default connect<ITHCombinedProps, ITHCombinedActions, {}>(state => state.ithState, {
-	login: createActionCreator<string>(ITHLogin),
+	login: createActionCreator<{status: string, name: string}>(ITHLogin),
 	changeStory: createActionCreator<number>(ITHStoryChanged)
 })(ITHPage);

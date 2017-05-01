@@ -1,5 +1,6 @@
-import {Action, ITHLogin, ITHStoryChanged} from "../actions/Actions";
+import {createAction, Action, ITHLogin, ITHStoryChanged} from "../actions/Actions";
 import {ajax} from "jquery";
+import {store, backendExt} from "../index";
 export interface ITHState {
 	isLogged: boolean;
 	user: string;
@@ -19,7 +20,16 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 	if (action) {
 		switch (action.type) {
 			case ITHLogin: {
-				return verifyName(action.data);
+				switch (action.data.status) {
+					case "send": {
+						verifyName(action.data.name);
+						break;
+					}
+					case "receive": {
+						return action.data.state;
+					}
+				}
+				break;
 			}
 			case ITHStoryChanged: {
 				if (!state.isLogged) {
@@ -29,7 +39,7 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 				if (story <= 0) {
 					return state;
 				}
-				connectToDB({task: "setStory", name: state.user, story: story});
+				connectToDB({task: "setStory", name: state.user, story: story}, true);
 				//Otherwise redux thinks it is the same state
 				return {
 					isLogged: state.isLogged,
@@ -45,7 +55,7 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 	if (!state) {
 		let lastLogin: string = localStorage.getItem("ITH_last_login");
 		if (lastLogin) {
-			return verifyName(lastLogin);
+			verifyName(lastLogin);
 		} else {
 			return defaultState;
 		}
@@ -59,31 +69,26 @@ const emptyNameState: ITHState = {
 	color: "red",
 	story: 1
 };
-function verifyName(name: string): ITHState {
+function verifyName(name: string) {
 	if (name === "") {
 		return emptyNameState;
 	}
 	localStorage.setItem("ITH_last_login", name);
-	let state = JSON.parse(connectToDB({task: "login", name: name}));
-	if (state.error) {
-		return {
-			isLogged: false,
-			msg: state.erorr,
-			color: "red",
-			user: "NONE",
-			story: 1
-		}
-	}
-	state.story = parseInt(state.story);
-	return state;
+	connectToDB({task: "login", name: name}, true, (data) => {
+		store.dispatch(createAction(ITHLogin, {
+			status: "receive",
+			state: JSON.parse(data)
+		}))
+	});
 }
 
 
-function connectToDB(data: Object): string {
+function connectToDB(data: Object, async: boolean = false, cb: (data: any, textStatus: string, jqXHR: JQueryXHR) => any = null): string {
 	return ajax({
-		url: "php/ITH.php",
+		url: `backend/ITH${backendExt}`,
 		method: "POST",
 		data: data,
-		async: false
+		async: async,
+		success: cb
 	}).responseText;
 }
