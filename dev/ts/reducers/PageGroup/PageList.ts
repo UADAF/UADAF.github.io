@@ -1,10 +1,10 @@
 import {Component} from "react";
-import {Action} from "../actions/Actions";
-import {hasCustomContent, getCustomContent} from "../misc/MiscUtils";
-import MainPage from "../components/Pages/MainPage";
-import HelpPage from "../components/Pages/HelpPage"
-import ITHPage from "../components/Pages/ITHPage";
-import CustomContentPage from "../components/Pages/CustomContentPage";
+import {Action} from "../../actions/Actions";
+import MainPage from "../../components/Pages/MainPage";
+import HelpPage from "../../components/Pages/HelpPage"
+import ITHPage from "../../components/Pages/ITHPage";
+import CustomContentPage from "../../components/Pages/CustomContentPage";
+import {CustomContent} from "./CustomContent";
 export interface PageProps {
 	href: string;
 	glyph: string;
@@ -12,12 +12,12 @@ export interface PageProps {
 	clazz: typeof Component;
 }
 
-export interface Pages {
+export interface PageList {
 	left: PageProps[];
 	right: PageProps[];
 }
-export default function reduce(state: Pages, action: Action<any>): Pages {
-	let pages: Pages = {
+export default function(state: PageList, action: Action<any>, customContent: CustomContent = null): PageList {
+	let pages: PageList = {
 		left: [
 			{
 				href: "main",
@@ -41,11 +41,11 @@ export default function reduce(state: Pages, action: Action<any>): Pages {
 		],
 			right: []
 	};
-	if(hasCustomContent()) {
+	if(customContent.content) {
 		pages.right.push({
 			href: "custom",
 			glyph: "pushpin",
-			windowName: getCustomContent().name,
+			windowName: customContent.name,
 			clazz: CustomContentPage
 		});
 	}

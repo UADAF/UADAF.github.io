@@ -29,10 +29,7 @@ class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavIte
 		);
 	}
 }
-function stateToProps(state, props: NavItemCreateProps): NavItemProps {
-	return {
-		active: props.href === state.curPage,
-	};
-}
 
-export default connect<NavItemProps, NavItemActions, NavItemCreateProps>(stateToProps, {changePage: createActionCreator<string>(PageChanged)})(NavItem);
+export default connect<NavItemProps, NavItemActions, NavItemCreateProps>((state, props: NavItemCreateProps) => {
+	return {active: props.href === state.pages.current}
+}, {changePage: createActionCreator<string>(PageChanged)})(NavItem);

@@ -1,10 +1,9 @@
 ﻿import * as React from "react";
-import {PageProps} from "../../reducers/PageList";
+import {PageProps} from "../../reducers/PageGroup/PageList";
 import NavItem from "./NavItem";
 import {connect} from "react-redux";
 
-interface NavMenuProps
-{
+interface NavMenuProps {
 	left: PageProps[];
 	right: PageProps[]
 }
@@ -33,16 +32,14 @@ class NavMenu extends React.Component<NavMenuProps, {}> {
 	}
 
 	static mapNaveBar(pages: PageProps[]) {
-		return pages.map((e: PageProps, i: number) => <NavItem key={i} href={e.href} glyph={e.glyph} windowName={e.windowName}/>);
+		return pages.map((e: PageProps, i: number) => <NavItem key={i} href={e.href} glyph={e.glyph}
+															   windowName={e.windowName}/>);
 	}
 }
 
-function stateToProps(state):NavMenuProps
-{
+export default connect(state => {
 	return {
-		left: state.pages.left,
-		right: state.pages.right
-	};
-}
-
-export default connect(stateToProps)(NavMenu);
+		left: state.pages.list.left,
+		right: state.pages.list.right
+	}
+})(NavMenu);

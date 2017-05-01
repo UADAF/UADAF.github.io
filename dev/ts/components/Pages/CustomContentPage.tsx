@@ -1,11 +1,16 @@
 import * as React from "react";
-import {getCustomContent, CustomContent} from "../../misc/MiscUtils";
+import {CustomContent} from "../../reducers/PageGroup/CustomContent";
+import {connect} from "react-redux";
 
-export default class CustomContentPage extends React.Component<{}, {}> {
+interface CustomContentPageProps {
+	content: CustomContent;
+}
+
+class CustomContentPage extends React.Component<CustomContentPageProps, {}> {
 	render() {
-		let content: CustomContent = getCustomContent();
+		let content: CustomContent = this.props.content;
 		if(content.content.indexOf("<script>") > -1) {
-			return React.createElement("div", null, "Custom content can't contain <script> tag");
+			content.content = "Custom content can't contain &lt;script&gt; tag";
 		}
 		return (
 			<div className="container">
@@ -23,3 +28,4 @@ export default class CustomContentPage extends React.Component<{}, {}> {
 	}
 }
 
+export default connect<CustomContentPageProps, {}, {}>(state => {return {content: state.pages.customContent}})(CustomContentPage);
