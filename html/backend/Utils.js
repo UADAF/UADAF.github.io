@@ -1,22 +1,14 @@
-function connect() {
+module.exports.connect = function connect() {
 	return require("mysql").createConnection(require("./Config"));
-}
+};
 
-module.exports.connect = connect;
+module.exports.reply = function reply(res, isError, msg, data = {}) {
+	data.error = isError;
+	data.msg = msg;
+	res.send(JSON.stringify(data));
+};
 
-function reply(res, isError, msg, data = {}) {
-	let rep = {
-		error: isError,
-		msg: msg
-	};
-	console.log(data);
-	Object.assign(rep, data);
-	res.send(JSON.stringify(rep));
-}
-
-module.exports.reply = reply;
-
-function check(data, res, val) {
+module.exports.check = function check(data, res, val) {
 	if(!Array.isArray(val)) {
 		val = [val];
 	}
@@ -27,7 +19,5 @@ function check(data, res, val) {
 		}
 	}
 	return true;
-}
-
-module.exports.check = check;
+};
 
