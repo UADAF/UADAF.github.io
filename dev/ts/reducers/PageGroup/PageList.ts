@@ -3,6 +3,7 @@ import {Action} from "../../actions/Actions";
 import MainPage from "../../components/Pages/MainPage";
 import HelpPage from "../../components/Pages/HelpPage"
 import ITHPage from "../../components/Pages/ITHPage";
+import RegisterPage from "../../components/Pages/RegisterPage";
 import CustomContentPage from "../../components/Pages/CustomContentPage";
 import {CustomContent} from "./CustomContent";
 export interface PageProps {
@@ -39,7 +40,14 @@ export default function(state: PageList, action: Action<any>, customContent: Cus
 			}
 
 		],
-			right: []
+		right: [
+            {
+            	href: "register",
+            	glyph: "info-sign",
+            	windowName: "Регистрация",
+            	clazz: RegisterPage
+            }
+		]
 	};
 	if(customContent.content) {
 		pages.right.push({

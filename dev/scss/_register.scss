@@ -1,0 +1,38 @@
+.reg-title {
+	color: white;
+	font-size: 200%;
+}
+.inp {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	background: rgba(0,0,0,0.3);
+	color: white;
+	&:hover {
+		background: rgba(0,0,0,0.5);
+	}
+}
+.inp-full {
+	width:100%;
+}
+
+.inp-half {
+	width: 50%;
+	margin-left: 0;
+	margin-right: 0;
+}
+.btn-reg {
+	background: rgba(0,0,0,0.3);
+	border: 1px solid black;
+	color: white;
+	&:hover {
+		background: rgba(0,0,0,0.5);
+		color: white;
+	}
+}
+#reg-output {
+	color:red;
+	font-size: 50%;
+}
