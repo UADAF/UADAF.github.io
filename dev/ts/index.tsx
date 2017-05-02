@@ -1,5 +1,5 @@
-export const backendExt: string = ".php"; //Apache
-//export const backendExt: string = ".js"; //Some node server (Like Express)
+//export const backendExt: string = ".php"; //Apache
+export const backendExt: string = ".js"; //Some node server (Like Express)
 
 
 import * as React from "react";

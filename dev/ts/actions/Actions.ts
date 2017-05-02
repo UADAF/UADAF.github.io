@@ -8,12 +8,16 @@ export const VkLoaded: string = "VkLoaded";
 export const FAQLoaded: string = "FAQLoaded";
 export const InviteLoaded: string = "InviteLoaded";
 export const CustomContentLoaded: string = "CustomContentLoaded";
+
+export const Register: string = "Register";
+export const Login: string = "Login";
+
 export interface Action<T> extends ReduxAction {
 	type: string;
 	data: T;
 }
 
-type ActionCreator<T> = (data: T) => Action<T>;
+export type ActionCreator<T> = (data: T) => Action<T>;
 
 export function createAction<T>(type: string, data: T): Action<T> {
 	return {

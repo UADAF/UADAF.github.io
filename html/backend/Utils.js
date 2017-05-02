@@ -14,7 +14,7 @@ module.exports.check = function check(data, res, val) {
 	}
 	for(let e of val) {
 		if(!data.hasOwnProperty(e)) {
-			reply(res, true, `${e.toUpperCase()}_NOT_SET`);
+			module.exports.reply(res, true, `${e.toUpperCase()}_NOT_SET`);
 			return false;
 		}
 	}

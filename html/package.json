@@ -9,6 +9,8 @@
   "author": "gt22&TheEvilROot",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.13.0"
+    "mysql": "^2.13.0",
+    "tweetnacl": "^1.0.0-rc.1",
+    "tweetnacl-util": "^0.15.0"
   }
 }
