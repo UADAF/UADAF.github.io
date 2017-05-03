@@ -51,7 +51,8 @@ module.exports = (res, post) => {
 								wfname: data.wf_username,
 								id: data.uuid
 							}
-						})
+						});
+						base.end();
 					} else {
 						utils.reply(res, false, "wrongpass", {success: false});
 					}
@@ -61,8 +62,55 @@ module.exports = (res, post) => {
 			});
 			break;
 		}
+		case "get": {
+			const dangerousProps = ['`password`', '`salt`'];
+			if (!utils.check(post, res, ['token', 'fields'])) {
+				return;
+			}
+
+			if (typeof post.fields === 'string') {
+				post.fields = JSON.parse(post.fields).map(e => `\`${e}\``); //Manual escaping due to mysql lib bug
+			}
+			for(let e of dangerousProps) {
+				if(post.fields.indexOf(e) > -1) {
+					utils.reply(res, true, 'Dangerous prop used! Get forbidden!');
+					return;
+				}
+			}
+			post.fields.push('issued_at');
+			base.query(`SELECT ${post.fields} FROM \`tokens\` INNER JOIN \`users\` ON tokens.user_id = users.uuid WHERE tokens.token = ? LIMIT 1`, [post.token], (e, r, f) => {
+				if (e) {
+					utils.reply(res, true, e);
+				} else {
+					if (r.length) {
+						let data = r[0];
+						if(validateTokenTimestamp(post.token, data.issued_at, base, res)) {
+							delete data.issued_at;
+							utils.reply(res, false, 'success', {success: true, data: data});
+						}
+					} else {
+						utils.reply(res, false, 'invalidtoken', {success: false});
+					}
+				}
+				base.end();
+			});
+			break;
+		}
 	}
 };
+
+function validateTokenTimestamp(token, timestamp, base, res) {
+	if(new Date(timestamp).getTime() + 86400 < Date.now()) { //One day later
+		utils.reply(res, false, 'tokenexpired', {success: false});
+		base.query("DELETE FROM `tokens` WHERE `token` = ?", [token], (e, r) => {
+			if(e) {
+				console.log(e);
+			}
+		});
+		return false;
+	}
+	return true;
+}
 
 function generateToken(usedId, base, res) {
 	let token = naclUtils.encodeBase64(nacl.randomBytes(32));
