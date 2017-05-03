@@ -102,6 +102,7 @@ function parseLoginAction(action: Action<StatedProp<LoginProps | UserState | Reg
 			let msg: RegisterPageProps = <RegisterPageProps>action.data.data;
 			state.color = msg.color;
 			state.customMsg = msg.msg;
+			changed = true;
 			break;
 		}
 		case "response": {
