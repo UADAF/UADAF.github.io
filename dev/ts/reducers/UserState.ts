@@ -67,14 +67,17 @@ export default function (state: UserState = null, action: Action<any>): UserStat
 
 
 function validateToken(token: string) {
-	request('validate', {token}).done(data => {
+	request('get', {token, fields: ['username', 'wf_username', `uuid`]}).done(data => {
 		if (data.error) {
 			alert(`Что-то пошло не так, ${data.msg}`);
 			return;
 		}
-		if (data.valid) {
-			data.loginInfo.token = token;
-			store.dispatch(createAction(Login, data.loginInfo));
+		if (data.success) {
+			let info = data.data;
+			let loginInfo = {token, name: info.username, wfname: info.wf_username, id: info.uuid};
+			store.dispatch(createAction(Login, loginInfo));
+		} else {
+			localStorage.removeItem('last-token');
 		}
 	}).fail(e => {
 		alert(`Что-то пошло не так, ${e.message}`);
@@ -105,6 +108,7 @@ function parseLoginAction(action: Action<StatedProp<LoginProps | UserState | Reg
 			let data: UserState = <UserState>action.data.data;
 			data.customMsg = 'Success';
 			data.color = 'green';
+			localStorage.setItem('last-token', data.token);
 			return data;
 		}
 	}
