@@ -42,7 +42,7 @@ module.exports = (res, post) => {
 					let data = r[0];
 					let hash = naclUtils.encodeBase64(hashPass(post.password, naclUtils.decodeBase64(data.salt)));
 					if (data.password === hash) {
-						let token = generateToken(data.uuid, base, res);
+						let token = generateToken(data.uuid, base);
 						utils.reply(res, false, "success", {
 							success: true,
 							data: {
@@ -112,7 +112,7 @@ function validateTokenTimestamp(token, timestamp, base, res) {
 	return true;
 }
 
-function generateToken(usedId, base, res) {
+function generateToken(usedId, base) {
 	let token = naclUtils.encodeBase64(nacl.randomBytes(32));
 	base.query("INSERT INTO `tokens` (`token`, `user_id`) VALUES (?, ?)", [token, usedId], (e, r) => {
 		if (e) {
