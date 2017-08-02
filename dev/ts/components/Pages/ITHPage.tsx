@@ -53,9 +53,9 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions> {
 						<div className="ith_title"> <a href={`http://ithappens.me/story/${this.props.story}`}
 											 dangerouslySetInnerHTML={{__html: `${this.props.story}:${this.props.storyName}`}}/> </div>
 						<div className="ith_quote" dangerouslySetInnerHTML={{__html: this.props.storyContent}}/>
-						<button className="control-btn-left" onClick={() => this.props.changeStory(-1)}>
+						<button className="control-btn" onClick={() => this.props.changeStory(-1)}>
 							<span>{"<<- Туда"}</span></button>
-						<button className="control-btn-right" onClick={() => this.props.changeStory(1)}>
+						<button className="control-btn" onClick={() => this.props.changeStory(1)}>
 							<span>{"Сюда ->>"}</span></button>
 					</div>
 				</div>
