@@ -20,7 +20,6 @@ export default class VkContact extends React.Component<VkContactProps> {
 						{this.props.name}
 					</div>
 				</a>
-				<hr className="vk_hr"/>
 				<div className="vk_desc">
 					{this.props.desc}
 				</div>

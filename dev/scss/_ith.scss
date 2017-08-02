@@ -15,25 +15,33 @@
 
 #ith_login {
 	.frame {
-		@include ith_misc(20px, $alpha: 0.5);
+		@include ith_misc(20px, $alpha: 0.5, $borderSize: 0px);
 
 		#login {
-			@include ith_misc(10px, $borderColor: white);
 			@include br_left;
+			@include ith_misc(10px,$alpha:0.0,$borderSize: 0px,$textcolor: white ,$borderColor: white);
+			border-radius: 0;
+			border-bottom: 1px solid #c9c9c9;
+			padding: 10px 10px 4px 4px;
 			width: 80%;
+			outline: none;
 			&:hover {
-				background: rgba(#000, 0.4);
+				border-color: white;
 			}
 		}
 
 		#submit {
-			@include ith_misc(10px, $borderColor: white);
 			@include br_right;
+			@include ith_misc(10px,$alpha:0.0,$borderSize: 0px,$textcolor: grey ,$borderColor: white);
+			border-radius: 0;
+			border-bottom: 1px solid #c9c9c9;
+			padding-bottom: 4px;
+			outline: none;
 			&:hover {
-				background: rgba(black, 0.8);
+				border-color: white;
 			}
 			&:active {
-				background: black;
+				color: white;
 			}
 		}
 
@@ -47,48 +55,61 @@
 #ith_quotes {
 
 	.frame {
-		@include ith_misc(20px);
+		@include ith_misc(20px, $borderSize:0px);
 		.ith_title {
-			@include ith_misc(5px);
+			@include ith_misc(2px, $borderSize:0px, $alpha:0.0);
 			width: 100%;
 			margin-bottom: 0;
 			font-size: 140%;
-			border-radius: 5px 5px 0 0;
-			border-bottom: none;
+			border-radius: 0;
+			border-bottom: 1px solid #c9c9c9;
+			&:hover{
+				border-color: white;
+			}
 			a {
 				color: white;
 			}
 		}
 		.ith_quote {
-			@include ith_misc(5px);
+			@include ith_misc(5px, $borderSize: 0px, $alpha: 0.1);
 			width: 100%;
 			min-height: 300px;
 			resize: vertical;
 			border-radius: 0;
-			border-bottom: none;
+			margin-bottom: 5px;
+			border-bottom: 1px solid #c9c9c9;
+			&:hover{
+				border-color: white;
+			}
 		}
 		.control-btn {
-			@include ith_misc(5px);
+			@include ith_misc(5px, $borderSize: 0px,$alpha:0.0, $textcolor: #c9c9c9);
 			@include unselectable;
+			border-radius: 0;
+			border-bottom: 1px solid #c9c9c9;
+			outline:none;
 			&:hover {
-				background: rgba(#000, 0.6);
+				border-color: white;
 			}
 			&:focus {
-				outline: 0;
+				color:white;
 			}
 			width: 50%;
-		}
-		.control-btn-left {
-			@extend .control-btn;
-			@include br_left;
-		}
-		.control-btn-right {
-			@extend .control-btn;
-			@include br_right;
 		}
 		.user_data {
 			color: #858585;
 			margin: 0 0 5px;
+			padding: 0px 5px 0px 5px;
+			text-align: right;
+			&-logout {
+				cursor: pointer;
+				&:hover{
+					color:white;
+				}
+				&:active {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }

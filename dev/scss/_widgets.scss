@@ -9,33 +9,44 @@ $widgetDistance: 30px;
 .discord_connect {
 	$discordColor: #7289DA;
 	text-align: center;
-	background-color: scale_color($discordColor, $lightness: -50%, $alpha: -50%);
-	border: solid 4px $discordColor;
+	background-color: rgba($discordColor, 0.3);
+	border: none;
+	align-items: center;
+	opacity: 0.7;
 	@include unselectable;
-
 	.discord_logo {
-		padding: 10px 0;
-		display: inline-block;
+		max-width: 200px;
+		padding: 20px 0 10px 0;
+		display: block;
+		margin: auto;
 	}
-
 	.connect_link {
 		&, &:hover {
 			text-decoration: none;
 			color: $discordColor;
 		}
 		font-family: 'Russo One', $fonts;
-		font-size: 600%;
+		font-size: 500%;
 		font-weight: bold;
+	}
+	&:hover{
+		opacity: 1;
+	}
+	&:active{
+		background-color: rgba($discordColor, 0.4);
 	}
 }
 
 .vk_contact {
 	@extend .widget;
-	$vk-border: solid black;
-	$vk-border-size: 4px;
-	border: $vk-border $vk-border-size;
+	border-bottom: 1px solid #c9c9c9;
 	vertical-align: top;
-	background: rgba(#858585, 0.5);
+	background: rgba(black, 0.2);
+	opacity: 0.7;
+	&:hover{
+		opacity: 1;
+		border-color: white;
+	}
 
 	.vk_link {
 		.vk_logo {
@@ -54,17 +65,13 @@ $widgetDistance: 30px;
 			color: #BBBBFF;
 		}
 	}
-
-	.vk_hr {
-		border: $vk-border $vk-border-size / 2;
-	}
-
 	.vk_desc {
-
+		margin-top: 10px;
+		padding: 0 5px 5px 5px;
+		color: #c9c9c9;
 		&:hover {
-			color: black;
+			color: white;
 		}
 
 	}
-
 }

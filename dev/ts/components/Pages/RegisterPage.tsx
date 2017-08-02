@@ -16,11 +16,13 @@ export interface RegisterPageActions {
 class RegisterPage extends React.Component<RegisterPageProps & RegisterPageActions> {
 	render() {
 		return (
-			<div className="container">
+			<div className="container reg-frame">
 				<div className="row">
 					<p className="reg-title text-left">Регистрация:
 						<span id="reg-output" style={{color: this.props.color}}>{this.props.msg}</span>
 					</p>
+				</div>
+				<div className="row reg-input-frame">
 					<input type="text" className="inp inp-half" name="username" id="username"
 						   placeholder="Username... "/>
 					<input type="text" className="inp inp-half" name="wf_username" id="wf_username"

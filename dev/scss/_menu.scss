@@ -1,5 +1,6 @@
 .site_menu {
 	border-radius: 0;
+	border-width: 0;
 }
 
 .logo-text {
@@ -9,10 +10,33 @@
 	@include unselectable;
 }
 
+
+#logo_image {
+	animation-duration: 3s;
+}
+
+@keyframes logo_anim {
+	from {transform:  rotate(0deg)}
+	to {transform:  rotate(360deg)}
+}
+
 .menu_unit {
 	text-transform: uppercase;
 	font-weight: bold;
 	@include unselectable;
+	&:hover{
+		border-bottom: 1px solid #c9c9c9;
+	}
+	&:active{
+		color:white;
+	}
+}
+
+.active {
+	border-bottom: 1px solid white;
+	a {
+		background-color: rgba(white, 0.5);
+	}
 }
 
 section {

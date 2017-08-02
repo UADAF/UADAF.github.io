@@ -14,7 +14,10 @@ class NavMenu extends React.Component<PageList> {
 							width: "30px",
 							height: "30px",
 							marginRight: "4px"
-						}} id="logo_image" src="/images/gear.png"/>Unified Anti Divine Astral Front</span>
+						}} id="logo_image" src="/images/gear.png" onClick={() => {
+							$("#logo_image").css("animation-name", "logo_anim");
+							setTimeout(() => $("#logo_image").css("animation-name", ""), 3000);
+						}}/>Unified Anti Divine Astral Front</span>
 					</div>
 					<ul className="nav navbar-nav">
 						{NavMenu.mapNaveBar(this.props.left)}

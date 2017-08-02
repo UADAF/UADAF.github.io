@@ -20,8 +20,8 @@ class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavIte
 	render() {
 		let listClass = this.props.active ? "active" : "";
 		return (
-			<li className={listClass}>
-				<a href="#" className="menu_unit" onClick={() => this.props.changePage(this.props.href)}>
+			<li>
+				<a href="#" className={"menu_unit "+listClass} onClick={() => this.props.changePage(this.props.href)}>
 					<span className={"glyphicon glyphicon-" + this.props.glyph}/>
 					{this.props.windowName}
 				</a>
