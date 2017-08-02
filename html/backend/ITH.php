@@ -22,9 +22,9 @@ switch ($task) {
 		$json = new stdClass();
 		$json->isLogged = true;
 		$json->user = $name;
-		$json->msg = "Success! Page: $story";
-		$json->color = "green";
 		$json->story = $story;
+		$json->storyContent = "Please wait";
+		$json->storyName = "Please wait";
 		echo json_encode($json);
 		$base->close();
 		break;

@@ -1,19 +1,21 @@
-import {createAction, Action, ITHLogin, ITHStoryChanged} from "../actions/Actions";
+import {createAction, Action, ITHLogin, ITHStoryChanged, ITHStoryLoaded} from "../actions/Actions";
 import {ajax} from "jquery";
 import {store, backendExt} from "../index";
+
 export interface ITHState {
 	isLogged: boolean;
 	user: string;
-	msg: string;
-	color: string;
 	story: number;
+	storyContent: string;
+	storyName: string;
 }
+
 const defaultState: ITHState = {
 	isLogged: false,
 	user: "NONE",
-	msg: "",
-	color: "#000",
-	story: 1
+	story: 1,
+	storyContent: "UNLOGGED",
+	storyName: "UNLOGGED"
 };
 
 export default function (state: ITHState = null, action: Action<any>): ITHState {
@@ -26,6 +28,8 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 						break;
 					}
 					case "receive": {
+
+						getStory(action.data.state.story);
 						return action.data.state;
 					}
 				}
@@ -40,19 +44,22 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 					return state;
 				}
 				connectToDB({task: "setStory", name: state.user, story: story}, true);
-				//Otherwise redux thinks it is the same state
+				getStory(story);
+				return state;
+			}
+			case ITHStoryLoaded: {
 				return {
 					isLogged: state.isLogged,
 					user: state.user,
-					msg: state.msg,
-					color: state.color,
-					story: story
-				};
+					story: action.data.num,
+					storyContent: action.data.content,
+					storyName: action.data.name
+				}
 			}
 		}
 
 	}
-	if (!state) {
+	if (!state && typeof store != "undefined") {
 		let lastLogin: string = localStorage.getItem("ITH_last_login");
 		if (lastLogin) {
 			verifyName(lastLogin);
@@ -65,21 +72,27 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 const emptyNameState: ITHState = {
 	isLogged: false,
 	user: "NONE",
-	msg: "Name should not be empty",
-	color: "red",
-	story: 1
+	story: 1,
+	storyContent: "UNLOGGED",
+	storyName: "UNLOGGED"
 };
+let isLoginInProgress = false;
 function verifyName(name: string) {
 	if (name === "") {
 		return emptyNameState;
 	}
-	localStorage.setItem("ITH_last_login", name);
-	connectToDB({task: "login", name: name}, true, (data) => {
-		store.dispatch(createAction(ITHLogin, {
-			status: "receive",
-			state: JSON.parse(data)
-		}))
-	});
+	if(!isLoginInProgress) {
+		isLoginInProgress = true;
+		localStorage.setItem("ITH_last_login", name);
+		connectToDB({task: "login", name: name}, true, (data) => {
+			store.dispatch(createAction(ITHLogin, {
+				status: "receive",
+				state: JSON.parse(data)
+			}));
+			isLoginInProgress = false;
+		});
+	}
+
 }
 
 
@@ -91,4 +104,33 @@ function connectToDB(data: Object, async: boolean = false, cb: (data: any, textS
 		async: async,
 		success: cb
 	}).responseText;
+}
+
+function getStory(id: number): void {
+	$.ajax({
+		url: `http://ithappens.me/story/${id}`,
+		method: "GET",
+		crossDomain: true,
+		async: false
+	}).then(html => {
+		let story = $(".story", $(html));
+		let text = story.find(".text");
+		let name = $("h1", story);
+		text.find("a").each((i, e) => {
+			let jqe = $(e);
+			let href: string = jqe.attr("href");
+			if (href.indexOf("/") == 0) {//Slash as first symbol
+				jqe.attr("href", `http://ithappens.me${href}`);
+			}
+			jqe.attr("target", "_blank")
+		});
+		//Just for safety
+		text.find("script").html("");
+		name.find("script").html("");
+		store.dispatch(createAction(ITHStoryLoaded, {
+			name: name.html(),
+			content: text.html(),
+			num: id
+		}));
+	});
 }

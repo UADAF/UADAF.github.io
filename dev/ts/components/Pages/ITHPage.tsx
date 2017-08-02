@@ -1,6 +1,7 @@
 import * as React from "react";
 import {createActionCreator, ITHLogin, ITHStoryChanged} from "../../actions/Actions";
 import {connect, ActionCreator} from "react-redux";
+import {ITHState} from "../../reducers/ITHState"
 import * as $ from "jquery";
 
 
@@ -13,16 +14,11 @@ interface ITHLoginActions {
 	login: ActionCreator<string>;
 }
 
-interface ITHStoryProps {
-	user: string;
-	story: number;
-}
-
 interface ITHStoryActions {
 	changeStory: ActionCreator<number>;
 }
 
-type ITHCombinedProps = ITHLoginProps & ITHStoryProps & {isLogged: boolean};
+type ITHCombinedProps = ITHLoginProps & ITHState & {isLogged: boolean};
 type ITHCombinedActions = ITHLoginActions & ITHStoryActions;
 
 class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions> {
@@ -49,15 +45,14 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions> {
 	}
 
 	createStory() {
-		let story: Story = getStory(this.props.story);
 		return (
 			<div className="container" id="ith_quotes">
 				<div className="row">
 					<div className="frame">
 						<div className="user_data"> User: {this.props.user}</div>
 						<div className="ith_title"> <a href={`http://ithappens.me/story/${this.props.story}`}
-											 dangerouslySetInnerHTML={{__html: `${this.props.story}:${story.name}`}}/> </div>
-						<div className="ith_quote" dangerouslySetInnerHTML={{__html: story.content}}/>
+											 dangerouslySetInnerHTML={{__html: `${this.props.story}:${this.props.storyName}`}}/> </div>
+						<div className="ith_quote" dangerouslySetInnerHTML={{__html: this.props.storyContent}}/>
 						<button className="control-btn-left" onClick={() => this.props.changeStory(-1)}>
 							<span>{"<<- Туда"}</span></button>
 						<button className="control-btn-right" onClick={() => this.props.changeStory(1)}>
@@ -67,38 +62,6 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions> {
 			</div>
 		)
 	}
-}
-
-interface Story {
-	name: string;
-	content: string;
-}
-
-function getStory(id: number): Story {
-	let html: string = $.ajax({
-		url: `http://ithappens.me/story/${id}`,
-		method: "GET",
-		crossDomain: true,
-		async: false
-	}).responseText;
-	let story = $(".story", $(html));
-	let text = story.find(".text");
-	let name = $("h1", story);
-	text.find("a").each((i, e) => {
-		let jqe = $(e);
-		let href: string = jqe.attr("href");
-		if (href.indexOf("/") == 0) {//Slash as first symbol
-			jqe.attr("href", `http://ithappens.me${href}`);
-		}
-		jqe.attr("target", "_blank")
-	});
-	//Just for safety
-	text.find("script").html("");
-	name.find("script").html("");
-	return {
-		name: name.html(),
-		content: text.html()
-	};
 }
 
 export default connect<ITHCombinedProps, ITHCombinedActions, {}>(state => state.ithState, {

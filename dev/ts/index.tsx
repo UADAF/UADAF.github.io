@@ -1,5 +1,5 @@
-//export const backendExt: string = ".php"; //Apache
-export const backendExt: string = ".js"; //Some node server (Like Express)
+export const backendExt: string = ".php"; //Apache
+//export const backendExt: string = ".js"; //Some node server (Like Express)
 
 
 import * as React from "react";
@@ -10,11 +10,12 @@ import {Provider} from "react-redux";
 import {Reducers, default as reducers} from "./reducers/reducers";
 import * as $ from "jquery";
 
-export const store: Store<Reducers> = createStore<Reducers>(reducers);
+export let store: Store<Reducers>;
 
 
 $(() => {
 	enableCORSAjax();
+	store = createStore<Reducers>(reducers);
 	render(
 		<Provider store={store}>
 			<Page />
