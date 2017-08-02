@@ -4,7 +4,7 @@ export interface HelpQuestionProps {
     answer: string,
     images: string[]
 }
-export default class HelpQuestion extends React.Component<HelpQuestionProps, {}> {
+export default class HelpQuestion extends React.Component<HelpQuestionProps> {
     render() {
         return (
             <div className="helpQuestion">

@@ -6,7 +6,7 @@ interface CustomContentPageProps {
 	content: CustomContent;
 }
 
-class CustomContentPage extends React.Component<CustomContentPageProps, {}> {
+class CustomContentPage extends React.Component<CustomContentPageProps> {
 	render() {
 		let content: CustomContent = this.props.content;
 		if(content.content.indexOf("<script>") > -1) {

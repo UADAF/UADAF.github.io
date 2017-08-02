@@ -13,7 +13,7 @@ export interface RegisterPageActions {
 	register: ActionCreator<StatedProp<RegisterProps>>;
 }
 
-class RegisterPage extends React.Component<RegisterPageProps & RegisterPageActions, {}> {
+class RegisterPage extends React.Component<RegisterPageProps & RegisterPageActions> {
 	render() {
 		return (
 			<div className="container">

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {connect, ActionCreator} from "react-redux";
-import {Action, PageChanged, createActionCreator} from "../../actions/Actions";
+import {PageChanged, createActionCreator} from "../../actions/Actions";
 export interface NavItemCreateProps {
 	href: string;
 	glyph: string;
@@ -16,7 +16,7 @@ interface NavItemActions {
 	changePage: ActionCreator<string>;
 }
 
-class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavItemActions, {}> {
+class NavItem extends React.Component<NavItemCreateProps & NavItemProps & NavItemActions> {
 	render() {
 		let listClass = this.props.active ? "active" : "";
 		return (

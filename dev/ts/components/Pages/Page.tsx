@@ -4,7 +4,7 @@ import NavMenu from "../NavMenu/NavMenu";
 export interface PageProps {
 	currentPage: typeof React.Component;
 }
-class Page extends React.Component<PageProps, {}> {
+class Page extends React.Component<PageProps> {
 	render() {
 		return (
 			<div>

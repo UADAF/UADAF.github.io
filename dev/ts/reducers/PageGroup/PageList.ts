@@ -1,4 +1,3 @@
-import {Component} from "react";
 import {Action} from "../../actions/Actions";
 import MainPage from "../../components/Pages/MainPage";
 import HelpPage from "../../components/Pages/HelpPage"
@@ -6,11 +5,12 @@ import ITHPage from "../../components/Pages/ITHPage";
 import RegisterPage from "../../components/Pages/RegisterPage";
 import CustomContentPage from "../../components/Pages/CustomContentPage";
 import {CustomContent} from "./CustomContent";
+import {ComponentClass} from "react-redux";
 export interface PageProps {
 	href: string;
 	glyph: string;
 	windowName: string;
-	clazz: typeof Component;
+	clazz: ComponentClass<any>;
 }
 
 export interface PageList {

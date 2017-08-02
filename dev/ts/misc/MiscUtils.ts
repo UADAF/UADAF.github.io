@@ -6,10 +6,6 @@ export function localStorageContains(key: string): boolean {
 	return item !== null && item !== "NONE";
 }
 
-export function isJWT(jwt: string) {
-	return jwt.split('.').length == 3;
-}
-
 export function loadJson(url: string, actionName: string, options: JQueryAjaxSettings = {}) {
 	options.url = url;
 	ajax(options).then(data => store.dispatch(createAction<any>(actionName, data)));

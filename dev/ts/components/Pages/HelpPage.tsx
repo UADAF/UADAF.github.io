@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 export interface HelpPageProps {
     question: HelpQuestionProps[]
 }
-export class HelpPage extends React.Component<HelpPageProps, {}> {
+export class HelpPage extends React.Component<HelpPageProps> {
     render() {
         return (
             <div className="container">

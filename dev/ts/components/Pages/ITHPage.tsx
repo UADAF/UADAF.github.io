@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Action, createActionCreator, ITHLogin, ITHStoryChanged} from "../../actions/Actions";
+import {createActionCreator, ITHLogin, ITHStoryChanged} from "../../actions/Actions";
 import {connect, ActionCreator} from "react-redux";
 import * as $ from "jquery";
 
@@ -25,7 +25,7 @@ interface ITHStoryActions {
 type ITHCombinedProps = ITHLoginProps & ITHStoryProps & {isLogged: boolean};
 type ITHCombinedActions = ITHLoginActions & ITHStoryActions;
 
-class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions, {}> {
+class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions> {
 
 	render() {
 		return this.props.isLogged ? this.createStory() : this.createLogin();

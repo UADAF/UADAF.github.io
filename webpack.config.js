@@ -1,5 +1,4 @@
-var path = require('path');
-var webpack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
 	devServer: {
@@ -30,7 +29,7 @@ module.exports = {
 		]
 	},
 	output: {
-		path: 'html',
+		path: '/var/www/html',
 		filename: 'js/bundle.min.js'
 	},
 	plugins: [

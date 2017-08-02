@@ -6,7 +6,7 @@ export interface MainPageProps {
 	vkLinks: VkContactProps[]
 }
 
-class MainPage extends React.Component<MainPageProps, {}> {
+class MainPage extends React.Component<MainPageProps> {
 
 	render() {
 		return (

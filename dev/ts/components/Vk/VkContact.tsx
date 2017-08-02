@@ -7,7 +7,7 @@ export interface VkContactProps {
 	desc: string
 }
 
-export default class VkContact extends React.Component<VkContactProps, {}> {
+export default class VkContact extends React.Component<VkContactProps> {
 
 	render() {
 		let link = `https://vk.com/${this.props.link}`;

@@ -1,24 +1,20 @@
 ﻿import * as React from "react";
-import {PageProps} from "../../reducers/PageGroup/PageList";
+import {PageProps, PageList} from "../../reducers/PageGroup/PageList";
 import NavItem from "./NavItem";
 import {connect} from "react-redux";
 
-interface NavMenuProps {
-	left: PageProps[];
-	right: PageProps[]
-}
-class NavMenu extends React.Component<NavMenuProps, {}> {
+class NavMenu extends React.Component<PageList> {
 	render() {
 		return (
 			<nav className="site_menu navbar navbar-inverse">
 				<div className="container-fluid">
 					<div className="navbar-header">
-						<span className="navbar-brand logo-text" href="index.html"><img style={{
+						<span className="navbar-brand logo-text"><img style={{
 							display: "inline-block",
 							width: "30px",
 							height: "30px",
 							marginRight: "4px"
-						}} id="logo_image" src="images/gear.png"/>Unified Anti Divine Astral Front</span>
+						}} id="logo_image" src="/images/gear.png"/>Unified Anti Divine Astral Front</span>
 					</div>
 					<ul className="nav navbar-nav">
 						{NavMenu.mapNaveBar(this.props.left)}

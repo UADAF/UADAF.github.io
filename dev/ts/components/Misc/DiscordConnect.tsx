@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 export interface DiscordProps {
 	invite: string;
 }
-class DiscordConnect extends React.Component<DiscordProps, {}> {
+class DiscordConnect extends React.Component<DiscordProps> {
 
 	render() {
 		const invite: string = this.props.invite;
@@ -14,7 +14,7 @@ class DiscordConnect extends React.Component<DiscordProps, {}> {
 			<div className="discord_connect">
 				<a className="connect_link" href={this.props.invite} target="_blank">
 					<div>
-						<img className="discord_logo img-responsive" src="images/discord/discordface.png"/>
+						<img className="discord_logo img-responsive" src="/images/discord/discordface.png"/>
 						Connect to discord
 					</div>
 				</a>
