@@ -4,6 +4,7 @@ import {Action as ReduxAction} from "redux";
 export const PageChanged: string = "PageChanged";
 export const ITHLogin: string = "ITHLogin";
 export const ITHStoryChanged: string = "ITHStoryChanged";
+export const ITHStoryLoaded: string = "ITHStoryLoaded";
 export const VkLoaded: string = "VkLoaded";
 export const FAQLoaded: string = "FAQLoaded";
 export const InviteLoaded: string = "InviteLoaded";
