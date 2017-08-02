@@ -1,5 +1,5 @@
 .idea/
 node_modules/
 html/js/
-html/backend/Config.php
 rechmod.sh
+/html/backend/Conifg.php
