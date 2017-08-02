@@ -49,7 +49,14 @@ class ITHPage extends React.Component<ITHCombinedProps & ITHCombinedActions> {
 			<div className="container" id="ith_quotes">
 				<div className="row">
 					<div className="frame">
-						<div className="user_data"> User: {this.props.user}</div>
+						<div className="user_data" onMouseOver={(e: React.MouseEvent<HTMLDivElement>) => {
+							e.currentTarget.className = "user_data user_data-logout";
+							e.currentTarget.innerHTML = "Logout"
+						}} onMouseOut={(e: React.MouseEvent<HTMLDivElement>) => {
+							e.currentTarget.className = "user_data";
+							e.currentTarget.innerHTML = "User: " + this.props.user;
+							//TODO: Implement logout
+						}}> User: {this.props.user}</div>
 						<div className="ith_title"> <a href={`http://ithappens.me/story/${this.props.story}`}
 											 dangerouslySetInnerHTML={{__html: `${this.props.story}:${this.props.storyName}`}}/> </div>
 						<div className="ith_quote" dangerouslySetInnerHTML={{__html: this.props.storyContent}}/>
