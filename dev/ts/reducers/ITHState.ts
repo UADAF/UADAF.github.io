@@ -28,7 +28,9 @@ export default function (state: ITHState = null, action: Action<any>): ITHState 
 						break;
 					}
 					case "receive": {
-
+						if(typeof action.data.state.story !== "number") {
+							action.data.state.story = parseInt(action.data.state.story);
+						}
 						getStory(action.data.state.story);
 						return action.data.state;
 					}

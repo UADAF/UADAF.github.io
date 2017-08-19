@@ -40,14 +40,7 @@ export default function(state: PageList, action: Action<any>, customContent: Cus
 			}
 
 		],
-		right: [
-            {
-            	href: "register",
-            	glyph: "info-sign",
-            	windowName: "Регистрация",
-            	clazz: RegisterPage
-            }
-		]
+		right: []
 	};
 	if(customContent.content) {
 		pages.right.push({
@@ -56,6 +49,14 @@ export default function(state: PageList, action: Action<any>, customContent: Cus
 			windowName: customContent.name,
 			clazz: CustomContentPage
 		});
+	}
+	if(window.location.href.indexOf("localhost") > -1) {
+		pages.right.push({
+            	href: "register",
+            	glyph: "info-sign",
+            	windowName: "Регистрация",
+            	clazz: RegisterPage
+            });
 	}
 	return pages;
 }
