@@ -93,7 +93,7 @@ function get() {
 }
 
 function isKeyValid($key) {
-	return $key === "key";
+	return $key === "e43a6fc824c762e8ffb412b3d2abdadc";
 }
 
 function checkIsSet($keys) {
