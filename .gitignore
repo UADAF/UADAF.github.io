@@ -1,5 +1,8 @@
 .idea/
 node_modules/
 html/js/
+html/machinejs/
 rechmod.sh
 /html/backend/Config.php
+html/machine.html
+
