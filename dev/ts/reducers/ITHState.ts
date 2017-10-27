@@ -134,5 +134,12 @@ function getStory(id: number): void {
 			content: text.html(),
 			num: id
 		}));
+	}).fail(error => {
+		console.log(error);
+		store.dispatch(createAction(ITHStoryLoaded, {
+			name: "Error loading story",
+			content: error.statusText,
+			num: id
+		}))
 	});
 }
