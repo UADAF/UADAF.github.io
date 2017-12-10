@@ -1,4 +1,4 @@
-﻿﻿import * as React from "react";
+﻿import * as React from "react";
 import {PageProps, PageList} from "../../reducers/PageGroup/PageList";
 import NavItem from "./NavItem";
 import {connect} from "react-redux";
@@ -15,8 +15,9 @@ class NavMenu extends React.Component<PageList> {
 							height: "30px",
 							marginRight: "4px"
 						}} id="logo_image" src="/images/gear.png" onClick={() => {
-							$("#logo_image").css("animation-name", "logo_anim");
-							setTimeout(() => $("#logo_image").css("animation-name", ""), 3000);
+							let logo = $("#logo_image");
+							logo.css("animation-name", "logo_anim");
+							setTimeout(() => logo.css("animation-name", ""), 3000);
 						}}/>Unified Anti Divine Astral Front</span>
 					</div>
 					<ul className="nav navbar-nav">
@@ -31,8 +32,7 @@ class NavMenu extends React.Component<PageList> {
 	}
 
 	static mapNaveBar(pages: PageProps[]) {
-		return pages.map((e: PageProps, i: number) => <NavItem key={i} href={e.href} glyph={e.glyph}
-															   windowName={e.windowName}/>);
+		return pages.map((e: PageProps, i: number) => <NavItem key={i} {...e}/>);
 	}
 }
 
