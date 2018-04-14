@@ -2,8 +2,11 @@
 import {PageProps, PageList} from "../../reducers/PageGroup/PageList";
 import NavItem from "./NavItem";
 import {connect} from "react-redux";
-
+import {createsoundbite} from "../../misc/MiscUtils"
 class NavMenu extends React.Component<PageList> {
+
+	player = createsoundbite('audio/S.ogg', 'audio/S.mp3');
+
 	render() {
 		return (
 			<nav className="site_menu navbar navbar-inverse">
@@ -17,6 +20,8 @@ class NavMenu extends React.Component<PageList> {
 						}} id="logo_image" src="/images/gear.png" onClick={() => {
 							let logo = $("#logo_image");
 							logo.css("animation-name", "logo_anim");
+
+							setTimeout(() => this.player.playclip(), 500);
 							setTimeout(() => logo.css("animation-name", ""), 3000);
 						}}/>Unified Anti Divine Astral Front</span>
 					</div>

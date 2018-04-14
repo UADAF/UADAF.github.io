@@ -86,10 +86,17 @@ function verifyName(name: string) {
 	if(!isLoginInProgress) {
 		isLoginInProgress = true;
 		localStorage.setItem("ITH_last_login", name);
-		connectToDB({task: "login", name: name}, true, (data) => {
+		connectToDB({task: "login", name: name}, true, data => {
+			try {
+				data = JSON.parse(data)
+			} catch(e) {
+				console.log(data);
+				isLoginInProgress = false;
+				return;
+			}
 			store.dispatch(createAction(ITHLogin, {
 				status: "receive",
-				state: JSON.parse(data)
+				state: data
 			}));
 			isLoginInProgress = false;
 		});

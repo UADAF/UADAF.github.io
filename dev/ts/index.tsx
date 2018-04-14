@@ -14,6 +14,7 @@ export let store: Store<Reducers>;
 
 
 $(() => {
+	console.log("Init");
 	enableCORSAjax();
 	store = createStore<Reducers>(reducers);
 	render(
