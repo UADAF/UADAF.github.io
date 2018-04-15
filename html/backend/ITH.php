@@ -11,10 +11,10 @@ $name = $_POST['name'];
 $base = connect();
 switch ($task) {
 	case "login": {
-		$story = $base->query("SELECT `story` FROM `ithappends` WHERE `user` = '$name'") or die("{error: $base->error}");
+		$story = $base->query("SELECT `story` FROM `users` WHERE `user` = '$name'") or die("{error: $base->error}");
 		if($story->num_rows === 0) {
 			$story = 1;
-			$base->query("INSERT INTO `ithappends` (`user`, `story`) VALUES ('$name', 1)", MYSQLI_ASYNC);
+			$base->query("INSERT INTO `users` (`user`, `story`) VALUES ('$name', 1)", MYSQLI_ASYNC);
 		} else {
 			$story = $story->fetch_array()[0];
 		}
@@ -34,6 +34,6 @@ switch ($task) {
 			echo "STORY_NOT_SET";
 		}
 		$story = $_POST['story'];
-		$base->query("UPDATE `ithappends` SET `story`='$story' WHERE `user` = '$name'");
+		$base->query("UPDATE `users` SET `story`='$story' WHERE `user` = '$name'");
 	}
 }
