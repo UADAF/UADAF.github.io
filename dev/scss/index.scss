@@ -22,6 +22,11 @@ body {
 	background: url("/images/bg.png");
 }
 
+.vk_desc {
+	hanging-punctuation: force-end;
+	white-space: pre-wrap;
+}
+
 @import "menu", "widgets", "help", "ith", "cc", "login", "register", "main";
 
 
