@@ -52,10 +52,10 @@ function get() {
 			case("pos"): {
 				if(checkIsSet('pos')) {
 					$id = $_POST['pos'];
-					$res = $base->query("SELECT `adder`, `author`, `quote` FROM `quoter` WHERE `id` = '$id'");
+					$res = $base->query("SELECT `id`, `adder`, `author`, `quote` FROM `quoter` WHERE `id` = '$id'");
 					if ($res) {
 						$res = $res->fetch_assoc();
-						rep(false, 'success', ['adder' => $res['adder'], 'author' => $res['author'], 'quote' => $res['quote']]);
+						rep(false, 'success', $res);
 					} else {
 						rep(true, $base->error);
 					}
@@ -82,6 +82,23 @@ function get() {
 					} else {
 						rep(true, $base->error);
 					}
+				}
+				break;
+			}
+			case("rand"): {
+				$count = $base->query("SELECT COUNT(*) AS count FROM `quoter`");
+				if($count) {
+					$count = $count->fetch_assoc()['count'];
+					$id = rand(1, $count);
+					$res = $base->query("SELECT `id`, `adder`, `author`, `quote` FROM `quoter` WHERE `id` = '$id'");
+					if ($res) {
+						$res = $res->fetch_assoc();
+						rep(false, 'success', $res);
+					} else {
+						rep(true, $base->error);
+					}
+				} else {
+					rep(true, $base->error);
 				}
 				break;
 			}

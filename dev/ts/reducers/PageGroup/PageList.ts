@@ -6,6 +6,7 @@ import RegisterPage from "../../components/Pages/RegisterPage";
 import CustomContentPage from "../../components/Pages/CustomContentPage";
 import {CustomContent} from "./CustomContent";
 import {ComponentClass} from "react-redux";
+import QuoterPage from "../../components/Pages/QuoterPage";
 export interface PageProps {
 	href: string;
 	glyph: string;
@@ -31,6 +32,12 @@ export default function(state: PageList, action: Action<any>, customContent: Cus
 				glyph: "bookmark",
 				windowName: "ITHappens",
 				clazz: ITHPage
+			},
+			{
+				href: "quoter",
+				glyph: "comment",
+				windowName: "Цитатник",
+				clazz: QuoterPage
 			},
 			{
 				href: "help",

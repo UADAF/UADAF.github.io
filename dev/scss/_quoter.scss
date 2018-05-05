@@ -1,0 +1,93 @@
+@mixin quoter_misc($padding, $bgcolor:black, $alpha:0.3, $textcolor: white, $borderSize: 1px, $borderType: solid, $borderColor: black) {
+	color: $textcolor;
+	background: rgba($bgcolor, $alpha);
+	border: $borderSize $borderType $borderColor;
+	padding: $padding;
+}
+
+@mixin br_left {
+	border-radius: 0 0 0 5px;
+}
+
+@mixin br_right {
+	border-radius: 0 0 5px 0;
+}
+
+#quoter_quotes {
+
+	.row {
+		padding: 0 25%;
+	}
+
+	.frame {
+		@include quoter_misc(20px, $borderSize:0px);
+		.ith_title {
+			@include quoter_misc(2px, $borderSize:0px, $alpha:0.0);
+			width: 100%;
+			margin-bottom: 0;
+			font-size: 140%;
+			border-radius: 0;
+			border-bottom: 1px solid #c9c9c9;
+			&:hover{
+				border-color: white;
+			}
+			a {
+				color: white;
+			}
+		}
+		.quoter_quote {
+			@include quoter_misc(5px, $borderSize: 0px, $alpha: 0.1);
+			width: 100%;
+			min-height: 100px;
+			resize: vertical;
+			border-radius: 0;
+			margin-bottom: 5px;
+			border-bottom: 1px solid #c9c9c9;
+			&:hover{
+				border-color: white;
+			}
+		}
+		.control-btn {
+			@include quoter_misc(5px, $borderSize: 0px,$alpha:0.0, $textcolor: #c9c9c9);
+			@include unselectable;
+			border-radius: 0;
+			border-bottom: 1px solid #c9c9c9;
+			outline:none;
+			&:hover {
+				border-color: white;
+			}
+			&:focus {
+				color:white;
+			}
+			width: 50%;
+		}
+		.control-btn-big {
+			@extend .control-btn;
+			width: 70%;
+		}
+		.control-btn-big-big {
+			@extend .control-btn;
+			width: 100%;
+		}
+		#id_input {
+			@extend .control-btn;
+			width: 30%;
+			border-left: 1px solid #c9c9c9;
+		}
+		.user_data {
+			color: #858585;
+			margin: 0 0 5px;
+			padding: 0 5px 0 5px;
+			text-align: right;
+			&-logout {
+				cursor: pointer;
+				&:hover{
+					color:white;
+				}
+				&:active {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

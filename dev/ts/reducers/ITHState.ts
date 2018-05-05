@@ -120,7 +120,7 @@ function getStory(id: number): void {
 		url: `http://ithappens.me/story/${id}`,
 		method: "GET",
 		crossDomain: true,
-		async: false
+		async: true
 	}).then(html => {
 		let story = $(".story", $(html));
 		let text = story.find(".text");
