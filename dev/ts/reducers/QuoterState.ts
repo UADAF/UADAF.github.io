@@ -36,7 +36,7 @@ export default function (state: QuoterState = null, action: Action<any>): Quoter
 						getQuote(-1);
 						return state
 				}
-				if (quote <= 0) {
+				if (isNaN(quote) || quote <= 0) {
 					return state;
 				}
 				getQuote(quote);
