@@ -36,6 +36,7 @@ export default function (state: QuoterState = null, action: Action<any>): Quoter
 						getQuote(-1);
 						return state
 				}
+				console.log(quote);
 				if (isNaN(quote) || quote <= 0) {
 					return state;
 				}
