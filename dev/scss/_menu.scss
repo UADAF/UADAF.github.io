@@ -4,25 +4,43 @@
 }
 
 .logo-text {
+	-webkit-transition: 0.3s;
+	   -moz-transition: 0.3s;
+	    -ms-transition: 0.3s;
+	     -o-transition: 0.3s;
+	        transition: 0.3s;
 	font-family: Oswald, $fonts;
 	padding: 11px 14px;
-	cursor: default;
+	cursor: pointer;
 	@include unselectable;
 }
 
 
 #logo_image {
-	animation-duration: 3s;
+	-webkit-transition: 1.5s;
+	   -moz-transition: 1.5s;
+	    -ms-transition: 1.5s;
+	     -o-transition: 1.5s;
+	        transition: 1.5s;
 }
 
-@keyframes logo_anim {
-	from {transform:  rotate(0deg)}
-	to {transform:  rotate(360deg)}
+.logo-rotate {
+	-webkit-transform: rotateZ(360deg);
+	   -moz-transform: rotateZ(360deg);
+	    -ms-transform: rotateZ(360deg);
+	     -o-transform: rotateZ(360deg);
+	        transform: rotateZ(360deg);
 }
 
 .menu_unit {
+	border-bottom: 1px solid transparent;
 	text-transform: uppercase;
 	font-weight: bold;
+	-webkit-transition: 0.3s;
+	   -moz-transition: 0.3s;
+	    -ms-transition: 0.3s;
+	     -o-transition: 0.3s;
+	        transition: 0.3s;
 	@include unselectable;
 	&:hover{
 		border-bottom: 1px solid #c9c9c9;
