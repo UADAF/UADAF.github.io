@@ -8,6 +8,11 @@ $widgetDistance: 30px;
 
 .discord_connect {
 	$discordColor: #7289DA;
+	-webkit-transition: 0.3s;
+	   -moz-transition: 0.3s;
+	    -ms-transition: 0.3s;
+	     -o-transition: 0.3s;
+	        transition: 0.3s;
 	text-align: center;
 	background-color: rgba($discordColor, 0.3);
 	border: none;
@@ -43,8 +48,13 @@ $widgetDistance: 30px;
 	vertical-align: top;
 	background: rgba(black, 0.2);
 	opacity: 0.7;
+	-webkit-transition: 0.3s;
+	   -moz-transition: 0.3s;
+	    -ms-transition: 0.3s;
+	     -o-transition: 0.3s;
+	        transition: 0.3s;
 	&:hover{
-		opacity: 1;
+		opacity: 0.9;
 		border-color: white;
 	}
 

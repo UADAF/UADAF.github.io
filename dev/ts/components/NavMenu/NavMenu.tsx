@@ -6,6 +6,7 @@ import {createsoundbite} from "../../misc/MiscUtils"
 class NavMenu extends React.Component<PageList> {
 
 	player = createsoundbite('audio/S.ogg', 'audio/S.mp3');
+	isSSSActive = false;
 
 	render() {
 		return (
@@ -19,10 +20,12 @@ class NavMenu extends React.Component<PageList> {
 							marginRight: "4px"
 						}} id="logo_image" src="/images/gear.png" onClick={() => {
 							let logo = $("#logo_image");
-							logo.css("animation-name", "logo_anim");
-
-							setTimeout(() => this.player.playclip(), 500);
-							setTimeout(() => logo.css("animation-name", ""), 3000);
+							logo.toggleClass("logo-rotate");
+							if(!this.isSSSActive) {
+								this.isSSSActive = true
+								this.player.playclip();
+								setTimeout(() => { this.isSSSActive = false; },2100)
+							}
 						}}/>Unified Anti Divine Astral Front</span>
 					</div>
 					<ul className="nav navbar-nav">

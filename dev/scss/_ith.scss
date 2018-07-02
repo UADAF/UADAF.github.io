@@ -16,7 +16,6 @@
 #ith_login {
 	.frame {
 		@include ith_misc(20px, $alpha: 0.5, $borderSize: 0px);
-
 		#login {
 			@include br_left;
 			@include ith_misc(10px,$alpha:0.0,$borderSize: 0px,$textcolor: white ,$borderColor: white);
@@ -53,7 +52,6 @@
 }
 
 #ith_quotes {
-
 	.frame {
 		@include ith_misc(20px, $borderSize:0px);
 		.ith_title {
@@ -73,7 +71,7 @@
 		.ith_quote {
 			@include ith_misc(5px, $borderSize: 0px, $alpha: 0.1);
 			width: 100%;
-			min-height: 300px;
+			min-height: 50vh;
 			resize: vertical;
 			border-radius: 0;
 			margin-bottom: 5px;

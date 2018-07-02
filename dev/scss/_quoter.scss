@@ -14,11 +14,6 @@
 }
 
 #quoter_quotes {
-
-	.row {
-		padding: 0 25%;
-	}
-
 	.frame {
 		@include quoter_misc(20px, $borderSize:0px);
 		.ith_title {
@@ -38,7 +33,7 @@
 		.quoter_quote {
 			@include quoter_misc(5px, $borderSize: 0px, $alpha: 0.1);
 			width: 100%;
-			min-height: 100px;
+			min-height: 50vh;
 			resize: vertical;
 			border-radius: 0;
 			margin-bottom: 5px;
@@ -73,6 +68,10 @@
 			@extend .control-btn;
 			width: 30%;
 			border-left: 1px solid #c9c9c9;
+			&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+				 -webkit-appearance: none; 
+				 margin: 0;
+			}
 		}
 		.user_data {
 			color: #858585;
