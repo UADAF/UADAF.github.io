@@ -22,7 +22,7 @@
     "js-md5": "^0.4.1",
     "jwt-simple": "^0.5.1",
     "node-libs-browser": "^1.0.0",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.9.4",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.4.2",
@@ -35,7 +35,7 @@
     "style-loader": "^0.13.2",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^1.14.1",
+    "webpack-dev-server": "^3.1.10",
     "webpack-hot-middleware": "^2.11.0"
   },
   "devDependencies": {
